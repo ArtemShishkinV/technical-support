@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:alpine
+    hostname: postgres
+    container_name: technical-support
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwe
+      - POSTGRES_DB=technicalSupportDb
+    ports:
+      - "5435:5432"
+    volumes:
+      - /data:/var/lib/docker/volumes/pgdata/_data
+  backend:
+    build: technical-support-backend/./
+    container_name: technical-support-backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/technicalSupportDb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=qwe
+    ports:
+      - '8081:8081'
+    depends_on:
+      - postgres
