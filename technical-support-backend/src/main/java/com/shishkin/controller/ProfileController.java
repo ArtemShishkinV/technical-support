@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/")
+@RequestMapping("/profile")
 public class ProfileController {
     @GetMapping
     public ResponseEntity<EmployeeDetails> getAuthenticationInfo() {
