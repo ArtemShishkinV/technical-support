@@ -6,6 +6,7 @@ import com.shishkin.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @Log4j2
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<Employee> findAll() {
@@ -34,6 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee create(Employee employee) {
         log.debug("#create employee " + employee);
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         return employeeRepository.save(employee);
     }
 

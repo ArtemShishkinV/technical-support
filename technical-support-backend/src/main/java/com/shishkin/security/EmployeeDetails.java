@@ -2,14 +2,16 @@ package com.shishkin.security;
 
 import com.shishkin.domain.Employee;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 public record EmployeeDetails(Employee employee) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(employee.getRole().getTitle()));
     }
 
     @Override

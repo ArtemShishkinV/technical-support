@@ -1,19 +1,32 @@
 package com.shishkin.config;
 
-import com.shishkin.security.AuthProviderImpl;
+import com.shishkin.security.EmployeeDetailsService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
 @EnableWebSecurity
 @AllArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final AuthProviderImpl authProvider;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
-        auth.authenticationProvider(authProvider);
+public class SecurityConfig {
+    private EmployeeDetailsService employeeDetailsService;
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http.csrf().disable().authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/","/**").authenticated()
+                .and().formLogin()
+                .and().userDetailsService(employeeDetailsService).build();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 }
