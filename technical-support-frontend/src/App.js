@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import React, {Component} from 'react';
 import Home from './pages/Home';
-import Home from './pages/Home';
+import Employees from "./pages/Employees";
 
 class App extends Component {
     render() {
@@ -9,8 +9,7 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route path="/" exact={true} component={Home}/>
-                    <Route path="/employees" exact={true} component={Employees}/>
-                    <Route path="/devices" exact={true} component={Devices}/>
+                    <Route path="/empls" exact={true} component={Employees}/>
                 </Switch>
             </Router>
         )
