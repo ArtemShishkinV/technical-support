@@ -1,6 +1,6 @@
 package com.shishkin.service;
 
-import com.shishkin.domain.Employee;
+import com.shishkin.domain.employee.Employee;
 import com.shishkin.exception.EmployeeNotFoundException;
 import com.shishkin.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;

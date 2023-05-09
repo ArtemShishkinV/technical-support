@@ -1,6 +1,6 @@
 package com.shishkin.security;
 
-import com.shishkin.domain.Employee;
+import com.shishkin.domain.employee.Employee;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

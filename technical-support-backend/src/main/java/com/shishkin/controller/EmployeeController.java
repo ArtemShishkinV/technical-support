@@ -1,6 +1,6 @@
 package com.shishkin.controller;
 
-import com.shishkin.domain.Employee;
+import com.shishkin.domain.employee.Employee;
 import com.shishkin.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

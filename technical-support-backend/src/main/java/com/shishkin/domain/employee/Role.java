@@ -1,4 +1,4 @@
-package com.shishkin.domain;
+package com.shishkin.domain.employee;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

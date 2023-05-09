@@ -1,6 +1,6 @@
 package com.shishkin.security;
 
-import com.shishkin.domain.Employee;
+import com.shishkin.domain.employee.Employee;
 import com.shishkin.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
