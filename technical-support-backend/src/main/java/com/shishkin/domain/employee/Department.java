@@ -1,5 +1,6 @@
 package com.shishkin.domain.employee;
 
+import com.shishkin.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -8,9 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
@@ -19,16 +17,12 @@ import java.util.Set;
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Builder
-@EqualsAndHashCode(exclude = "id")
 @Getter
 @ToString
-public class Department {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Department extends BaseEntity {
     private String title;
-
     @OneToMany(mappedBy = "department")
     private Set<Employee> employees;
 }

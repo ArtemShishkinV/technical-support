@@ -1,5 +1,6 @@
 package com.shishkin.domain.employee;
 
+import com.shishkin.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -8,9 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -21,13 +19,10 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = "id")
+@EqualsAndHashCode(callSuper = false)
 @Getter
 @ToString
-public class Workplace {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Workplace extends BaseEntity {
     private int floor;
     private String roomNumber;
     private int tableNumber;

@@ -1,5 +1,6 @@
 package com.shishkin.domain.employee;
 
+import com.shishkin.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -20,10 +21,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = "id")
+@EqualsAndHashCode(callSuper = false)
 @Getter
 @ToString
-public class Office {
+public class Office extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
