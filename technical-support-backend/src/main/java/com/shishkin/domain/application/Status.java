@@ -1,14 +1,22 @@
 package com.shishkin.domain.application;
 
-import lombok.AllArgsConstructor;
+import com.shishkin.domain.BaseEntity;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.Set;
+
+@Entity
+@Table
+@NoArgsConstructor
 @AllArgsConstructor
-public enum Status {
-    CANCELED("Отменена"),
-    EXPIRED("Просрочена"),
-    CREATED("Создана"),
-    IN_PROGRESS("В работе"),
-    COMPLETED("Выполнена");
-
-    private final String title;
+@Builder
+@EqualsAndHashCode(callSuper = true)
+@Getter
+@ToString
+public class Status extends BaseEntity {
+    @OneToMany(mappedBy = "status")
+    private Set<Application> applications;
 }

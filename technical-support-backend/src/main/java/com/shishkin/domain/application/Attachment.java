@@ -1,11 +1,8 @@
 package com.shishkin.domain.application;
 
-import com.shishkin.domain.BaseEntity;
+import com.shishkin.domain.NamedBasedEntity;
 import com.shishkin.domain.employee.Employee;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
@@ -18,16 +15,20 @@ import java.time.LocalDateTime;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Builder
 @Getter
-@EqualsAndHashCode(callSuper = false)
-public class Comment extends BaseEntity {
-    private String text;
+@ToString
+public class Attachment extends NamedBasedEntity {
+    private byte[] file;
     @CreationTimestamp
     private LocalDateTime createdAt;
-    @ManyToOne
-    @JoinColumn(name = "application_id", referencedColumnName = "id")
-    private Application application;
+
     @ManyToOne
     @JoinColumn(name = "sender_staffNumber", referencedColumnName = "staffNumber")
     private Employee sender;
+
+    @ManyToOne
+    @JoinColumn(name = "application_id", referencedColumnName = "id")
+    private Application application;
 }

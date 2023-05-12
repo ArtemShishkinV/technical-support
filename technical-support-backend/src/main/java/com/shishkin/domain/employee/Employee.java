@@ -2,20 +2,10 @@ package com.shishkin.domain.employee;
 
 import com.shishkin.domain.application.Application;
 import com.shishkin.domain.application.Comment;
+import com.shishkin.domain.device.Device;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -47,6 +37,9 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "workplace_id", referencedColumnName = "id", unique = true)
     private Workplace workplace;
+
+    @OneToMany(mappedBy = "owner")
+    private Set<Device> devices;
 
     @OneToMany(mappedBy = "sender")
     private Set<Comment> comments;

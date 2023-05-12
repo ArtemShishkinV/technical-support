@@ -1,11 +1,17 @@
 package com.shishkin.domain.application;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.shishkin.domain.NamedBasedEntity;
+import lombok.*;
 
+import javax.persistence.Entity;
+
+@Entity
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = true)
 @Getter
-public enum Priority {
-    LOW(48), MEDIUM(24), HIGH(6), CRITICAL(0);
-    private final int autoAppointmentHours;
+@ToString
+public class Priority extends NamedBasedEntity {
+    private int autoAppointmentHours;
 }

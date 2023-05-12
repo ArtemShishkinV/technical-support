@@ -2,50 +2,58 @@ package com.shishkin.domain.application;
 
 
 import com.shishkin.domain.BaseEntity;
+import com.shishkin.domain.application.device.ApplicationDevice;
+import com.shishkin.domain.application.software.ApplicationSoftware;
 import com.shishkin.domain.employee.Employee;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Builder
 @Getter
+@ToString
 public class Application extends BaseEntity {
     private String description;
     private boolean isOffline;
-    @Enumerated(EnumType.STRING)
-    private Status status;
-    @Enumerated(EnumType.STRING)
-    private Priority priority;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date solvedAt;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date expirationAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    private LocalDateTime solvedAt;
+    private LocalDateTime expirationAt;
+
+
+    @OneToOne(mappedBy = "application")
+    private ApplicationDevice applicationDevice;
+
+    @OneToOne(mappedBy = "application")
+    private ApplicationSoftware applicationSoftware;
+
+    @OneToMany(mappedBy = "application")
+    private Set<Attachment> attachments;
 
     @OneToMany(mappedBy = "application")
     private Set<Comment> comments;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "staffNumber", name = "initiator_staffNumber")
-    private Employee initiator;
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
+    private Status status;
+
     @ManyToOne
-    @JoinColumn(referencedColumnName = "staffNumber", name = "executor_staffNumber")
+    @JoinColumn(name = "priority_id", referencedColumnName = "id")
+    private Priority priority;
+
+    @ManyToOne
+    @JoinColumn(name = "initiator_staffNumber", referencedColumnName = "staffNumber")
+    private Employee initiator;
+
+    @ManyToOne
+    @JoinColumn(name = "executor_staffNumber", referencedColumnName = "staffNumber")
     private Employee executor;
 }

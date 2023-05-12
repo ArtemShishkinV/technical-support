@@ -1,4 +1,5 @@
-package com.shishkin.domain.employee;
+package com.shishkin.domain.software;
+
 
 import com.shishkin.domain.NamedBasedEntity;
 import lombok.*;
@@ -10,13 +11,12 @@ import java.util.Set;
 
 @Entity
 @Table
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Builder
 @Getter
 @ToString
-public class Department extends NamedBasedEntity {
-    @OneToMany(mappedBy = "department")
-    private Set<Employee> employees;
+public class SoftwareType extends NamedBasedEntity {
+    @OneToMany(mappedBy = "softwareType")
+    private Set<Software> software;
 }

@@ -1,12 +1,7 @@
 package com.shishkin.domain.employee;
 
-import com.shishkin.domain.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.shishkin.domain.NamedBasedEntity;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -21,8 +16,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = false)
 @Getter
 @ToString
-public class JobPost extends BaseEntity {
-    private String title;
+public class JobPost extends NamedBasedEntity {
     @OneToMany(mappedBy = "jobPost")
     private Set<Employee> employees;
 }

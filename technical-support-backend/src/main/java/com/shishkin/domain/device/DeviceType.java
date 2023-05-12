@@ -1,4 +1,4 @@
-package com.shishkin.domain.employee;
+package com.shishkin.domain.device;
 
 import com.shishkin.domain.NamedBasedEntity;
 import lombok.*;
@@ -8,15 +8,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
+
 @Entity
 @Table
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Builder
 @Getter
 @ToString
-public class Department extends NamedBasedEntity {
-    @OneToMany(mappedBy = "department")
-    private Set<Employee> employees;
+public class DeviceType extends NamedBasedEntity {
+    private int countReplacementDays;
+
+    @OneToMany(mappedBy = "deviceType")
+    private Set<Device> devices;
 }

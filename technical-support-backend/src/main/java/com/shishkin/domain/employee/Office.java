@@ -25,9 +25,6 @@ import java.util.Set;
 @Getter
 @ToString
 public class Office extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String city;
     private String street;
     private int buildNumber;
