@@ -28,7 +28,6 @@ public class Application extends BaseEntity {
     private LocalDateTime solvedAt;
     private LocalDateTime expirationAt;
 
-
     @OneToOne(mappedBy = "application")
     private ApplicationDevice applicationDevice;
 

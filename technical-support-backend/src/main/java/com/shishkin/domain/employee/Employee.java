@@ -24,6 +24,7 @@ public class Employee {
     private String email;
     private LocalDate birthDay;
     private String phoneNumber;
+    private boolean isOnline;
 
     @Enumerated(EnumType.STRING)
     private Role role;
