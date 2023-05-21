@@ -1,6 +1,7 @@
 package com.shishkin.domain.application;
 
 import com.shishkin.domain.BaseEntity;
+import com.shishkin.domain.NamedBasedEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @ToString
-public class Status extends BaseEntity {
+public class Status extends NamedBasedEntity {
     @OneToMany(mappedBy = "status")
     private Set<Application> applications;
 }

@@ -1,7 +1,7 @@
 package com.shishkin.controller;
 
-import com.shishkin.dto.ApplicationDeviceDto;
-import com.shishkin.dto.ApplicationSoftwareDto;
+import com.shishkin.dto.application.ApplicationDto;
+import com.shishkin.service.ApplicationService;
 import lombok.AllArgsConstructor;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +14,14 @@ import java.util.List;
 @RequestMapping("/api/application")
 @AllArgsConstructor
 public class ApplicationController {
-    @GetMapping("/devices")
-    public List<ApplicationDeviceDto> findAllApplicationDevices() {
-        throw new NotYetImplementedException();
+    private final ApplicationService applicationService;
+    @GetMapping("/active")
+    public List<ApplicationDto> findActive() {
+        return applicationService.findAllActive();
     }
 
-    @GetMapping("/software")
-    public List<ApplicationSoftwareDto> findAllApplicationSoftware() {
-        throw new NotYetImplementedException();
+    @GetMapping("/archive")
+    public List<ApplicationDto> findArchive() {
+        return applicationService.findAllArchive();
     }
 }

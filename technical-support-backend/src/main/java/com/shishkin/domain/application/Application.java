@@ -27,6 +27,8 @@ public class Application extends BaseEntity {
     private LocalDateTime createdAt;
     private LocalDateTime solvedAt;
     private LocalDateTime expirationAt;
+    @CreationTimestamp
+    private LocalDateTime lastAppointmentAt;
 
     @OneToOne(mappedBy = "application")
     private ApplicationDevice applicationDevice;
