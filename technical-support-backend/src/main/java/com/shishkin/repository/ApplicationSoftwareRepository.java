@@ -11,10 +11,19 @@ public interface ApplicationSoftwareRepository extends JpaRepository<Application
             value = "SELECT * FROM application_software " +
                     "LEFT JOIN application a on a.id = application_software.application_id " +
                     "LEFT JOIN status s on a.status_id = s.id " +
-                    "WHERE s.title = 'Создана' or s.title = 'В работе'",
+                    "WHERE s.title = 'В работе'",
             nativeQuery = true
     )
     List<ApplicationSoftware> findAllActive();
+
+    @Query(
+            value = "SELECT * FROM application_software " +
+                    "LEFT JOIN application a on a.id = application_software.application_id " +
+                    "LEFT JOIN status s on a.status_id = s.id " +
+                    "WHERE s.title = 'Создана'",
+            nativeQuery = true
+    )
+    List<ApplicationSoftware> findAllNew();
 
     @Query(
             value = "SELECT * FROM application_software " +

@@ -19,6 +19,13 @@ public class ApplicationServiceImpl implements ApplicationService {
     private final ApplicationSoftwareRepository applicationSoftwareRepository;
 
     @Override
+    public List<ApplicationDto> findAllNew() {
+        var allNewDevice = applicationDeviceRepository.findAllNew();
+        var allNewSoftware = applicationSoftwareRepository.findAllNew();
+        return combineApplications(allNewDevice, allNewSoftware);
+    }
+
+    @Override
     public List<ApplicationDto> findAllActive() {
         var allActiveDevice = applicationDeviceRepository.findAllActive();
         var allActiveSoftware = applicationSoftwareRepository.findAllActive();
