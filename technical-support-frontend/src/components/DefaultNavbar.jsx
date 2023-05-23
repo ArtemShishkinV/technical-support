@@ -1,13 +1,24 @@
 import React from 'react';
 
-const DefaultNavbar = () => {
+export const DefaultNavbar = () => {
+    const logout = () => {
+        // setIsAuth(false);
+        // localStorage.removeItem('auth')
+        console.log("Выход...")
+    }
+
     return (
-        <ul className="navbar">
-            <li><a href="/">Профиль</a></li>
-            <li><a href="/applications/{id}">Мои заявки</a></li>
-            <li><a href="/devices/{id}">Мои устройства</a></li>
-        </ul>
+        <div>
+            <div>
+                <ul>
+                    <li><a href="/">Профиль</a></li>
+                    <li><a href="/applications">Заявки</a></li>
+                    <li><a href="/devices">Устройства</a></li>
+                </ul>
+            </div>
+            <div>
+                <button onClick={logout}>Выйти</button>
+            </div>
+        </div>
     );
 };
-
-export default DefaultNavbar;

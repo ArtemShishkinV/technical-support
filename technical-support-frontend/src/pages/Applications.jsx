@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import {actives, archives, news} from "./data";
+import cl from './Applications.module.css';
+import {DefaultNavbar} from "../components/DefaultNavbar";
 
 const Applications = () => {
     const [applications, updateApplications] = useState([])
@@ -8,21 +10,43 @@ const Applications = () => {
         getActiveApplications()
     }, [])
 
-    async function getActiveApplications() {
-        const response = await axios.get("/api/application/active")
-        console.log(response)
-        updateApplications(response.data)
-        console.log(applications)
+
+    function getActiveApplications() {
+        updateApplications(actives)
     }
 
+    function getArchiveApplications() {
+        updateApplications(archives)
+    }
+
+    function getNewApplications() {
+        updateApplications(news)
+    }
+
+
+    // async function getArchiveApplications() {
+    //     const response = await axios.get("/api/application/archive")
+    //     updateApplications(response.data)
+    // }
+
+    // async function getNewApplications() {
+    //     const response = await axios.get("/api/application/new")
+    //     updateApplications(response.data)
+    // }
+
+    // async function getActiveApplications() {
+    //     const response = await axios.get("/api/application/active")
+    //     updateApplications(response.data)
+    // }
+
     return (
-        <div>
+        <div className={cl.main}>
             <button>Создать заявку</button>
             <hr/>
             <div>
-                <button>Новые</button>
-                <button>В работе</button>
-                <button>Архив</button>
+                <button onClick={getNewApplications}>Новые</button>
+                <button onClick={getActiveApplications}>В работе</button>
+                <button onClick={getArchiveApplications}>Архив</button>
             </div>
             <div>
                 <input type="text"/>
