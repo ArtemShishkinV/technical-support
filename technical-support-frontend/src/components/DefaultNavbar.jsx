@@ -1,4 +1,6 @@
 import React from 'react';
+import "../css/Navbar.css";
+import {DefaultButton} from "./UI/DefaultButton";
 
 export const DefaultNavbar = () => {
     const logout = () => {
@@ -8,16 +10,18 @@ export const DefaultNavbar = () => {
     }
 
     return (
-        <div>
-            <div>
-                <ul>
-                    <li><a href="/">Профиль</a></li>
-                    <li><a href="/applications">Заявки</a></li>
-                    <li><a href="/devices">Устройства</a></li>
-                </ul>
-            </div>
-            <div>
-                <button onClick={logout}>Выйти</button>
+        <div className="navbar__wrapper">
+            <div className="container">
+                <div className="navbar">
+                    <ul className="navbar__list">
+                        <li><a href="/">Профиль</a></li>
+                        <li><a href="/applications">Заявки</a></li>
+                        <li><a href="/devices">Устройства</a></li>
+                    </ul>
+                    <div className="logout__wrapper">
+                        <DefaultButton children="Выйти"/>
+                    </div>
+                </div>
             </div>
         </div>
     );

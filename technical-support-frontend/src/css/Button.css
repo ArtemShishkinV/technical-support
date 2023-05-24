@@ -1,0 +1,27 @@
+@import "style.css";
+
+.myBtn {
+    padding: 5px 20px;
+    color: var(--dark-blue);
+    background: transparent;
+    border: 2px solid var(--dark-blue);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.navbar .myBtn {
+    color: var(--light-gray);
+}
+
+
+.navbar .myBtn:hover {
+    color: var(--dark-blue);
+    background-color: var(--light-gray);
+    transition-delay: 0.1s;
+}
+
+.myBtn:hover {
+    color: var(--light-gray);
+    background-color: var(--dark-blue);
+    transition-delay: 0.03s;
+}

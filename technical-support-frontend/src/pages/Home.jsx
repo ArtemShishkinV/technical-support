@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import "../css/style.css";
+import {AppContext} from "../AppContext";
 
 const Home = () => {
+    const user = useContext(AppContext);
+
     return (
         <div>
-            <h1>Домашняя страница</h1>
-            {/*<Link to="./Applications"> Список заявок </Link>*/}
-            <ul>
-                <li><a href="/employees">Список работников</a></li>
-                <li><a href="/applications">Мои заявки</a></li>
-            </ul>
+            <div className="container">
+                <div className="info">
+                    <h1>Добро пожаловать, {user.lastName} {user.firstName} {user.middleName}!</h1>
+                </div>
+            </div>
         </div>
     );
 };

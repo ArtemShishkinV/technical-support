@@ -1,10 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {actives, archives, news} from "./data";
-import cl from './Applications.module.css';
-import {DefaultNavbar} from "../components/DefaultNavbar";
+import "../css/Applications.css";
+import {DefaultButton} from "../components/UI/DefaultButton";
+import {DefaultFilter} from "../components/DefaultFilter";
 
 const Applications = () => {
+    const filterOptions = [
+        {value: 'default', name: 'По умолчанию'},
+        {value: 'priority', name: 'Сначала важные'},
+        {value: 'new', name: 'Сначала новые'},
+        {value: 'old', name: 'Сначала старые'},
+    ]
+
     const [applications, updateApplications] = useState([])
+    const [filter, setFilter] = useState({sort: '', query: ''})
+
 
     useEffect(() => {
         getActiveApplications()
@@ -40,39 +50,39 @@ const Applications = () => {
     // }
 
     return (
-        <div className={cl.main}>
-            <button>Создать заявку</button>
-            <hr/>
-            <div>
-                <button onClick={getNewApplications}>Новые</button>
-                <button onClick={getActiveApplications}>В работе</button>
-                <button onClick={getArchiveApplications}>Архив</button>
-            </div>
-            <div>
-                <input type="text"/>
-                <select>
-                    <option value="" selected>По умолчанию</option>
-                    <option value="">Сначала важные</option>
-                    <option value="">Сначала новые</option>
-                    <option value="">Сначала старые</option>
-                </select>
-            </div>
-            <div className="application-list">
-                {applications.map((application) =>
-                    <div className="application">
-                        <div className="application-id">Заявка #{application.basedApplicationDto.id}</div>
-                        <div className="application-category">{application.category}</div>
-                        <div className="application-object">
-                            {application.applicationObjectDto.category}: {application.applicationObjectDto.title}
-                        </div>
-                        <div className="application-type">{application.type}</div>
-                        <div className="application-employee">
-                            {application.basedApplicationDto.executor.lastName} {application.basedApplicationDto.executor.firstName} {application.basedApplicationDto.executor.middleName}
-                        </div>
-                        <div className="application-status">{application.basedApplicationDto.status}</div>
-                        <div className="application-date">{application.basedApplicationDto.createdAt}</div>
+        <div className="applications-main">
+            <div className="container">
+                <div className="applications-inner">
+                    <DefaultButton>Создать заявку</DefaultButton>
+                    <hr/>
+                    <div>
+                        <button onClick={getNewApplications}>Новые</button>
+                        <button onClick={getActiveApplications}>В работе</button>
+                        <button onClick={getArchiveApplications}>Архив</button>
                     </div>
-                )}
+                    <DefaultFilter
+                        filter={filter}
+                        setFilter={setFilter}
+                        options={filterOptions}
+                    />
+                    <div className="application-list">
+                        {applications.map((application) =>
+                            <div className="application">
+                                <div className="application-id">Заявка #{application.basedApplicationDto.id}</div>
+                                <div className="application-category">{application.category}</div>
+                                <div className="application-object">
+                                    {application.applicationObjectDto.category}: {application.applicationObjectDto.title}
+                                </div>
+                                <div className="application-type">{application.type}</div>
+                                <div className="application-employee">
+                                    {application.basedApplicationDto.executor.lastName} {application.basedApplicationDto.executor.firstName} {application.basedApplicationDto.executor.middleName}
+                                </div>
+                                <div className="application-status">{application.basedApplicationDto.status}</div>
+                                <div className="application-date">{application.basedApplicationDto.createdAt}</div>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
