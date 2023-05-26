@@ -1,0 +1,14 @@
+@import "style.css";
+
+.myCategories {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 50px;
+}
+
+.myCategories button {
+    margin-bottom: 10px;
+}

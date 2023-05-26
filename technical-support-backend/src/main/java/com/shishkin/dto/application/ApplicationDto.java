@@ -23,7 +23,7 @@ public class ApplicationDto {
 
     public ApplicationDto(ApplicationSoftware applicationSoftware) {
         this.basedApplicationDto = new BasedApplicationDto(applicationSoftware.getApplication());
-        this.category = DEVICE_CATEGORY;
+        this.category = SOFTWARE_CATEGORY;
         this.applicationObjectDto = new ApplicationObjectDto(applicationSoftware.getSoftware());
         this.type = applicationSoftware.getApplicationSoftwareType().getTitle();
     }

@@ -1,16 +1,19 @@
 @import "style.css";
 
 .myBtn {
-    padding: 5px 20px;
+    font-size: 16px;
+    padding: 5px 40px;
+    min-width: 177px;
     color: var(--dark-blue);
-    background: transparent;
+    background: white;
     border: 2px solid var(--dark-blue);
-    border-radius: 7px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 .navbar .myBtn {
     color: var(--light-gray);
+    background-color: transparent;
 }
 
 
@@ -24,4 +27,12 @@
     color: var(--light-gray);
     background-color: var(--dark-blue);
     transition-delay: 0.03s;
+}
+
+.application-go .myBtn {
+    border: 2px solid salmon;
+}
+
+.application-go .myBtn:hover {
+    background-color: var(--dark-gray);
 }

@@ -4,6 +4,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin: 100px 0;
     justify-content: center;
 }
+
+.application-id {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.application-category {
+    margin: 0 auto;
+}
+
+.application {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 50px;
+    padding: 5px 20px;
+    border: 3px double salmon;
+}
+
+.application-div {
+    margin-bottom: 10px;
+}
+
+.application-footer {
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.application-go {
+    text-align: center;
+}
+

@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {actives, archives, news} from "./data";
 import "../css/Applications.css";
 import {DefaultButton} from "../components/UI/DefaultButton";
 import {DefaultFilter} from "../components/DefaultFilter";
+import {DefaultCategories} from "../components/DefaultCategories";
+import {ApplicationList} from "../components/ApplicationList";
+import {sortApplications} from "../services/ApplicationSort";
+import app from "../App";
 
 const Applications = () => {
     const filterOptions = [
@@ -15,14 +19,20 @@ const Applications = () => {
     const [applications, updateApplications] = useState([])
     const [filter, setFilter] = useState({sort: '', query: ''})
 
+    const filteredApplications = useMemo(() => {
+        if (applications.length !== 0) {
+            return sortApplications(applications, filter.sort);
+        }
+        return applications
+    }, [filter, applications])
+
 
     useEffect(() => {
         getActiveApplications()
     }, [])
 
-
     function getActiveApplications() {
-        updateApplications(actives)
+        updateApplications(actives);
     }
 
     function getArchiveApplications() {
@@ -33,55 +43,25 @@ const Applications = () => {
         updateApplications(news)
     }
 
-
-    // async function getArchiveApplications() {
-    //     const response = await axios.get("/api/application/archive")
-    //     updateApplications(response.data)
-    // }
-
-    // async function getNewApplications() {
-    //     const response = await axios.get("/api/application/new")
-    //     updateApplications(response.data)
-    // }
-
-    // async function getActiveApplications() {
-    //     const response = await axios.get("/api/application/active")
-    //     updateApplications(response.data)
-    // }
-
     return (
         <div className="applications-main">
             <div className="container">
                 <div className="applications-inner">
                     <DefaultButton>Создать заявку</DefaultButton>
                     <hr/>
-                    <div>
-                        <button onClick={getNewApplications}>Новые</button>
-                        <button onClick={getActiveApplications}>В работе</button>
-                        <button onClick={getArchiveApplications}>Архив</button>
-                    </div>
+                    <DefaultCategories
+                        categories={[
+                            {callback: getNewApplications, name: 'Новые'},
+                            {callback: getActiveApplications, name: 'В работе'},
+                            {callback: getArchiveApplications, name: 'Архив'}
+                        ]}
+                    />
                     <DefaultFilter
                         filter={filter}
                         setFilter={setFilter}
                         options={filterOptions}
                     />
-                    <div className="application-list">
-                        {applications.map((application) =>
-                            <div className="application">
-                                <div className="application-id">Заявка #{application.basedApplicationDto.id}</div>
-                                <div className="application-category">{application.category}</div>
-                                <div className="application-object">
-                                    {application.applicationObjectDto.category}: {application.applicationObjectDto.title}
-                                </div>
-                                <div className="application-type">{application.type}</div>
-                                <div className="application-employee">
-                                    {application.basedApplicationDto.executor.lastName} {application.basedApplicationDto.executor.firstName} {application.basedApplicationDto.executor.middleName}
-                                </div>
-                                <div className="application-status">{application.basedApplicationDto.status}</div>
-                                <div className="application-date">{application.basedApplicationDto.createdAt}</div>
-                            </div>
-                        )}
-                    </div>
+                    <ApplicationList applications={filteredApplications}/>
                 </div>
             </div>
         </div>

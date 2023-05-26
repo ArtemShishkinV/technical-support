@@ -4,5 +4,6 @@
     width: 60%;
     padding: 5px 15px;
     margin: 5px 0;
-    border: 1px solid var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    border-radius: 5px;
 }

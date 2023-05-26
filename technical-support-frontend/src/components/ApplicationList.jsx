@@ -1,6 +1,12 @@
 import React from 'react';
+import {ApplicationListItem} from "./ApplicationListItem";
 
-const ApplicationList = ({applications, isActive}) => {
+export const ApplicationList = ({applications, isActive}) => {
+    return (
+        <div className="application-list">
+            {applications.map((application) =>
+                <ApplicationListItem application={application}/>
+            )}
+        </div>
+    )
 };
-
-export default ApplicationList;
