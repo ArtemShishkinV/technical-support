@@ -47,7 +47,9 @@ const Applications = () => {
         <div className="applications-main">
             <div className="container">
                 <div className="applications__inner">
-                    <DefaultButton>Создать заявку</DefaultButton>
+                    <a href="/create-application">
+                        <DefaultButton>Создать заявку</DefaultButton>
+                    </a>
                     <hr/>
                     <DefaultCategories
                         categories={[

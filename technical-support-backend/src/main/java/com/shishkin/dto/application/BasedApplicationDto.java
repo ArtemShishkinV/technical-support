@@ -14,6 +14,7 @@ class BasedApplicationDto {
     EmployeeDto executor;
     String status;
     String priority;
+    boolean isOffline;
     LocalDateTime createdAt;
     LocalDateTime expirationAt;
 
@@ -23,6 +24,7 @@ class BasedApplicationDto {
         this.initiator = new EmployeeDto(application.getInitiator());
         this.executor = new EmployeeDto(application.getExecutor());
         this.status = application.getStatus().getTitle();
+        this.isOffline = application.isOffline();
         this.priority = application.getPriority().getTitle();
         this.createdAt = application.getCreatedAt();
         this.expirationAt = application.getExpirationAt();

@@ -5,7 +5,7 @@ export const ApplicationList = ({applications, isActive}) => {
     return (
         <div className="application-list">
             {applications.map((application) =>
-                <ApplicationListItem application={application}/>
+                <ApplicationListItem application={application} key={application.basedApplicationDto.id}/>
             )}
         </div>
     )

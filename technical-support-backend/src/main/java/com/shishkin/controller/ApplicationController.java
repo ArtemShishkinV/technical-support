@@ -1,9 +1,12 @@
 package com.shishkin.controller;
 
+import com.shishkin.dto.application.ApplicationCreatedDto;
 import com.shishkin.dto.application.ApplicationDto;
 import com.shishkin.service.ApplicationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +31,10 @@ public class ApplicationController {
     @GetMapping("/archive")
     public List<ApplicationDto> findArchive() {
         return applicationService.findAllArchive();
+    }
+
+    @PostMapping("/create")
+    public ApplicationDto create(@RequestBody ApplicationCreatedDto applicationCreatedDto) {
+
     }
 }

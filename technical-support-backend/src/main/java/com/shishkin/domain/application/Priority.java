@@ -14,4 +14,5 @@ import javax.persistence.Entity;
 @ToString
 public class Priority extends NamedBasedEntity {
     private int autoAppointmentHours;
+    private int points;
 }

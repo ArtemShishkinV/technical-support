@@ -6,7 +6,7 @@ export const DefaultCategories = ({categories}) => {
     return (
         <div className="myCategories">
             {categories.map(category =>
-                <DefaultButton onClick={category.callback}>{category.name}</DefaultButton>
+                <DefaultButton onClick={category.callback} key={category.name}>{category.name}</DefaultButton>
             )}
         </div>
     );
