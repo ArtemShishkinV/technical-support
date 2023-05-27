@@ -6,6 +6,7 @@ import Applications from "./pages/Applications";
 import {DefaultNavbar} from "./components/DefaultNavbar";
 import {AppContext} from "./AppContext";
 import {user} from "./pages/data";
+import {CreateApplication} from "./pages/CreateApplication";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/" exact={true} component={Home}/>
                         <Route path="/employees" exact={true} component={Employees}/>
                         <Route path="/applications" exact={true} component={Applications}/>
+                        <Route path="/create-application" exact={true} component={CreateApplication}/>
                     </Switch>
                 </Router>
             </BrowserRouter>

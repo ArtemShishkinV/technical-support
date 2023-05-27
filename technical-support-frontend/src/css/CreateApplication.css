@@ -1,0 +1,17 @@
+@import "style.css";
+
+.create-application__inner {
+    display: flex;
+    max-width: 450px;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.create-application__inner div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

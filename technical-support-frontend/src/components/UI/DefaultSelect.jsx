@@ -10,7 +10,7 @@ export const DefaultSelect = ({label, options, defaultValue, value, onChange}) =
                 value={value}
                 onChange={event => onChange(event.target.value)}
             >
-                <option value={defaultValue.value} selected>{defaultValue.name}</option>
+                <option value={defaultValue.value} disabled selected>{defaultValue.name}</option>
                 {options.map(option=>
                     <option key={option.value} value={option.value}>
                         {option.name}

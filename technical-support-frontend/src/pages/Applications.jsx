@@ -6,10 +6,10 @@ import {DefaultFilter} from "../components/DefaultFilter";
 import {DefaultCategories} from "../components/DefaultCategories";
 import {ApplicationList} from "../components/ApplicationList";
 import {sortApplications} from "../services/ApplicationSort";
-import app from "../App";
 
 const Applications = () => {
     const filterOptions = [
+        {value: "", name: "Тип сортировки"},
         {value: 'default', name: 'По умолчанию'},
         {value: 'priority', name: 'Сначала важные'},
         {value: 'new', name: 'Сначала новые'},
@@ -46,7 +46,7 @@ const Applications = () => {
     return (
         <div className="applications-main">
             <div className="container">
-                <div className="applications-inner">
+                <div className="applications__inner">
                     <DefaultButton>Создать заявку</DefaultButton>
                     <hr/>
                     <DefaultCategories
