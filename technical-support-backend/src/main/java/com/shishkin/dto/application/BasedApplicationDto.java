@@ -1,12 +1,15 @@
 package com.shishkin.dto.application;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.shishkin.domain.application.Application;
 import com.shishkin.dto.employee.EmployeeDto;
+import lombok.AllArgsConstructor;
 import lombok.Value;
 
 import java.time.LocalDateTime;
 
 @Value
+@AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
 class BasedApplicationDto {
     Long id;
     String description;
@@ -16,7 +19,7 @@ class BasedApplicationDto {
     String priority;
     boolean isOffline;
     LocalDateTime createdAt;
-    LocalDateTime expirationAt;
+//    LocalDateTime expirationAt;
 
     BasedApplicationDto(Application application) {
         this.id = application.getId();
@@ -27,6 +30,6 @@ class BasedApplicationDto {
         this.isOffline = application.isOffline();
         this.priority = application.getPriority().getTitle();
         this.createdAt = application.getCreatedAt();
-        this.expirationAt = application.getExpirationAt();
+//        this.expirationAt = application.getExpirationAt();
     }
 }

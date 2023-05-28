@@ -2,6 +2,7 @@ package com.shishkin.domain.device;
 
 import com.shishkin.domain.employee.Employee;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@AllArgsConstructor
+@Builder
 @Getter
-@ToString
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "serial_number_generator")

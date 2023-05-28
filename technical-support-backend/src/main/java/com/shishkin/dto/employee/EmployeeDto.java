@@ -1,11 +1,16 @@
 package com.shishkin.dto.employee;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.shishkin.domain.employee.Department;
 import com.shishkin.domain.employee.Employee;
+import com.shishkin.domain.employee.JobPost;
+import lombok.AllArgsConstructor;
 import lombok.Value;
 
 import java.time.LocalDate;
 
 @Value
+@AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
 public class EmployeeDto {
     Long staffNumber;
     String login;
@@ -16,9 +21,9 @@ public class EmployeeDto {
     LocalDate birthDay;
     String phoneNumber;
     boolean isOnline;
-    String department;
     String role;
-    String post;
+    DepartmentDto department;
+    JobPostDto post;
     WorkplaceDto workplace;
     OfficeDto officeDto;
 
@@ -32,9 +37,9 @@ public class EmployeeDto {
         this.birthDay = employee.getBirthDay();
         this.phoneNumber = employee.getPhoneNumber();
         this.isOnline = employee.isOnline();
-        this.department = employee.getDepartment().getTitle();
-        this.post = employee.getJobPost().getTitle();
         this.role = employee.getRole().getCode();
+        this.department = new DepartmentDto(employee.getDepartment());
+        this.post = new JobPostDto(employee.getJobPost());
         this.workplace = new WorkplaceDto(employee.getWorkplace());
         this.officeDto = new OfficeDto(employee.getWorkplace().getOffice());
     }

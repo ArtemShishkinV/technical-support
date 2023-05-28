@@ -4,17 +4,16 @@ import com.shishkin.domain.BaseEntity;
 import com.shishkin.domain.application.Application;
 import com.shishkin.domain.device.Device;
 import lombok.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.*;
 
 @Entity
 @Table
+@Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@Builder
-@Getter
-@ToString
 public class ApplicationDevice extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "application_id", referencedColumnName = "id")

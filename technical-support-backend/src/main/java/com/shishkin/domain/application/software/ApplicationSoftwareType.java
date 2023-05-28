@@ -10,11 +10,10 @@ import java.util.Set;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@Builder
 @Getter
-@ToString
 public class ApplicationSoftwareType extends NamedBasedEntity {
     @OneToMany(mappedBy = "applicationSoftwareType")
     private Set<ApplicationSoftware> applicationSoftware;

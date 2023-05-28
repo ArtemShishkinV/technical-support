@@ -11,11 +11,10 @@ import java.util.Set;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@Builder
 @Getter
-@ToString
 public class DeviceType extends NamedBasedEntity {
     private int countReplacementDays;
 

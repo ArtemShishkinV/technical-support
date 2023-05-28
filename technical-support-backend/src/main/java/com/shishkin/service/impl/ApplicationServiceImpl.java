@@ -1,15 +1,27 @@
 package com.shishkin.service.impl;
 
 import com.shishkin.domain.application.Application;
+import com.shishkin.domain.application.ApplicationObjectType;
+import com.shishkin.domain.application.Priority;
+import com.shishkin.domain.application.Status;
 import com.shishkin.domain.application.device.ApplicationDevice;
 import com.shishkin.domain.application.software.ApplicationSoftware;
+import com.shishkin.domain.employee.Employee;
 import com.shishkin.dto.application.ApplicationCreatedDto;
 import com.shishkin.dto.application.ApplicationDto;
 import com.shishkin.repository.ApplicationDeviceRepository;
-import com.shishkin.repository.ApplicationRepository;
+import com.shishkin.repository.ApplicationDeviceTypeRepository;
 import com.shishkin.repository.ApplicationSoftwareRepository;
+import com.shishkin.repository.ApplicationSoftwareTypeRepository;
+import com.shishkin.repository.DeviceRepository;
+import com.shishkin.repository.EmployeeRepository;
+import com.shishkin.repository.PriorityRepository;
+import com.shishkin.repository.SoftwareRepository;
+import com.shishkin.repository.StatusRepository;
 import com.shishkin.service.ApplicationAssigneeService;
 import com.shishkin.service.ApplicationService;
+import com.shishkin.service.ApplicationTypeService;
+import com.shishkin.service.utils.AppointmentDatetimeUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +32,23 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ApplicationServiceImpl implements ApplicationService {
+
     private final ApplicationDeviceRepository applicationDeviceRepository;
     private final ApplicationSoftwareRepository applicationSoftwareRepository;
+    private final EmployeeRepository employeeRepository;
 
-    private final ApplicationRepository applicationRepository;
+    private final PriorityRepository priorityRepository;
+
+    private final StatusRepository statusRepository;
+
+    private final SoftwareRepository softwareRepository;
+    private final ApplicationSoftwareTypeRepository applicationSoftwareTypeRepository;
+
+    private final DeviceRepository deviceRepository;
+    private final ApplicationDeviceTypeRepository applicationDeviceTypeRepository;
 
     private final ApplicationAssigneeService applicationAssigneeService;
+    private final ApplicationTypeService applicationTypeService;
 
     @Override
     public List<ApplicationDto> findAllNew() {
@@ -50,13 +73,57 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public ApplicationDto create(ApplicationCreatedDto applicationCreatedDto) {
-        Application application = Application.builder()
-                .description(applicationCreatedDto.getDescription())
-                .executor(applicationAssigneeService.getExecutor(applicationCreatedDto))
-                .createdAt(LocalDateTime.now())
-
-        return null;
+        Application application = createBaseApplication(applicationCreatedDto);
+        return createApplicationByType(application, applicationCreatedDto);
     }
+
+    private Application createBaseApplication(ApplicationCreatedDto applicationCreatedDto) {
+        LocalDateTime createdAt = LocalDateTime.now();
+        Priority priority = priorityRepository.findByTitle(applicationCreatedDto.getPriority());
+        Status status = statusRepository.findByTitle("Создана");
+        Employee initiator = employeeRepository.getById(applicationCreatedDto.getInitiator().getStaffNumber());
+
+        return Application.builder()
+                .solvedAt(null)
+                .priority(priority)
+                .status(status)
+                .description(applicationCreatedDto.getDescription())
+                .initiator(initiator)
+                .executor(applicationAssigneeService.getExecutor(applicationCreatedDto))
+                .appointmentAt(AppointmentDatetimeUtils.getAppointmentAt(priority, createdAt))
+                .createdAt(createdAt)
+                .build();
+    }
+
+    private ApplicationDto createApplicationByType(Application application,
+                                                   ApplicationCreatedDto applicationCreatedDto) {
+        if (ApplicationObjectType.DEVICE.getTitle().equals(applicationCreatedDto.getCategory())) {
+            ApplicationDevice applicationDevice = createDeviceApplication(application, applicationCreatedDto);
+            return new ApplicationDto(applicationTypeService.save(applicationDevice));
+        }
+        ApplicationSoftware applicationSoftware = createSoftwareApplication(application, applicationCreatedDto);
+        return new ApplicationDto(applicationTypeService.save(applicationSoftware));
+    }
+
+    private ApplicationSoftware createSoftwareApplication(Application application,
+                                                          ApplicationCreatedDto applicationCreatedDto) {
+        String type = applicationCreatedDto.getType();
+        return ApplicationSoftware.builder()
+                .application(application)
+                .software(softwareRepository.getById(applicationCreatedDto.getApplicationObjectDto().getId()))
+                .applicationSoftwareType(applicationSoftwareTypeRepository.findByTitle(type))
+                .build();
+    }
+
+    private ApplicationDevice createDeviceApplication(Application application,
+                                                      ApplicationCreatedDto applicationCreatedDto) {
+        String type = applicationCreatedDto.getType();
+        ApplicationDevice.ApplicationDeviceBuilder builder = ApplicationDevice.builder()
+                .application(application)
+                .applicationDeviceType(applicationDeviceTypeRepository.findByTitle(type));
+        return builder.device(deviceRepository.getById(applicationCreatedDto.getApplicationObjectDto().getId())).build();
+    }
+
 
     private List<ApplicationDto> combineApplications(List<ApplicationDevice> applicationsDevices,
                                                      List<ApplicationSoftware> applicationsSoftware) {

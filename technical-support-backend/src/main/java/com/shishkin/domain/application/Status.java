@@ -1,8 +1,10 @@
 package com.shishkin.domain.application;
 
-import com.shishkin.domain.BaseEntity;
 import com.shishkin.domain.NamedBasedEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -14,9 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = true)
 @Getter
-@ToString
 public class Status extends NamedBasedEntity {
     @OneToMany(mappedBy = "status")
     private Set<Application> applications;

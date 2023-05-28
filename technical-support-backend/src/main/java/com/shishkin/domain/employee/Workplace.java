@@ -19,9 +19,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = false)
 @Getter
-@ToString
 public class Workplace extends BaseEntity {
     private int floor;
     private String roomNumber;

@@ -3,6 +3,7 @@ package com.shishkin.domain.application;
 import com.shishkin.domain.BaseEntity;
 import com.shishkin.domain.employee.Employee;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,10 +17,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
-@EqualsAndHashCode(callSuper = false)
 public class Comment extends BaseEntity {
     private String text;
     @CreationTimestamp

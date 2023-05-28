@@ -1,11 +1,14 @@
 package com.shishkin.dto.application;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.shishkin.domain.device.Device;
 import com.shishkin.domain.software.Software;
+import lombok.AllArgsConstructor;
 import lombok.Value;
 
 @Value
-class ApplicationObjectDto {
+@AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
+public class ApplicationObjectDto {
     Long id;
     String title;
     String category;

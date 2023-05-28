@@ -10,11 +10,10 @@ import java.util.Set;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@Builder
 @Getter
-@ToString
 public class DeviceCondition extends NamedBasedEntity {
     @OneToMany(mappedBy = "deviceCondition")
     private Set<Device> devices;

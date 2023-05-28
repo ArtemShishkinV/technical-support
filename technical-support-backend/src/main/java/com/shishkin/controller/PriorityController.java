@@ -9,5 +9,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/priority")
 @AllArgsConstructor
 public class PriorityController {
-    @GetMapping
 }

@@ -35,6 +35,7 @@ public class ApplicationController {
 
     @PostMapping("/create")
     public ApplicationDto create(@RequestBody ApplicationCreatedDto applicationCreatedDto) {
-
+        System.out.println(applicationCreatedDto);
+        return applicationService.create(applicationCreatedDto);
     }
 }

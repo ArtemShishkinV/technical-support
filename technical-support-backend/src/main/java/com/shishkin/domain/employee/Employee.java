@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,6 +50,7 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "jobPost_id", referencedColumnName = "id", nullable = false)
     private JobPost jobPost;
+
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = false)
     private Department department;
@@ -57,14 +59,14 @@ public class Employee {
     private Workplace workplace;
 
     @OneToMany(mappedBy = "owner")
-    private Set<Device> devices;
+    private List<Device> devices;
 
     @OneToMany(mappedBy = "sender")
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
     @OneToMany(mappedBy = "initiator")
-    private Set<Application> applicationsInitiator;
+    private List<Application> applicationsInitiator;
 
     @OneToMany(mappedBy = "executor")
-    private Set<Application> applicationsExecutor;
+    private List<Application> applicationsExecutor;
 }

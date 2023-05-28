@@ -16,7 +16,8 @@ VALUES (2, 'К1', 1, 1),
        (1, 'К1', 1, 3),
        (3, 'К1', 1, 4),
        (3, 'К2', 1, 4),
-       (3, 'К2', 2, 4);
+       (3, 'К2', 2, 4),
+       (4, 'К6', 1, 1);
 
 INSERT INTO job_post(title)
 VALUES ('Инженер'),
@@ -53,7 +54,9 @@ VALUES (nextval('employee_seq'), '2002-01-31', 'admin@mail.ru', 'Артем', '�
        (nextval('employee_seq'), '1995-02-02', 'test@mail.ru', 'Петров', 'Петр', 'Петрович', 'test',
         '$2a$12$Rx7dprHETaLJHK1559eII.HCFGrWlrP5PWhUsyUOdIZ5VuSM1qXzq', '89200005283', false, 'SUPPORT', 4, 1, 4),
        (nextval('employee_seq'), '1993-04-07', 'test@mail.ru', 'Алексеев', 'Алексей', 'Алексеевич', 'admin',
-        '$2a$12$aUJqAWKDY1oTolyEKL0aLejbQptzz8THFT', '89231112244', false, 'ADMIN', 3, 3, 3);
+        '$2a$12$aUJqAWKDY1oTolyEKL0aLejbQptzz8THFT', '89231112244', false, 'ADMIN', 3, 3, 3),
+       (nextval('employee_seq'), '1995-02-02', 'test@mail.ru', 'Самонов', 'Самон', 'Петрович', 'xre',
+        '$2a$12$Rx7dprHETaLJHK1559eII.HCFGrWlrP5PWhUsyUOdIZ5VuSM1qXzq', '89333335283', false, 'SUPPORT', 4, 1, 13);
 
 INSERT INTO device(serial_number, device_type_id, device_condition_id, owner_staff_number, title, description)
 VALUES (nextval('device_seq'), 1, 1, 10000000, 'Huawei Mateview',
@@ -82,9 +85,9 @@ VALUES (nextval('device_seq'), 1, 1, 10000000, 'Huawei Mateview',
 
 
 INSERT INTO application_device_type(title)
-VALUES ('Выдать'),
+VALUES ('Выдача'),
        ('Ремонт'),
-       ('Списать');
+       ('Сдача');
 
 INSERT INTO application_software_type(title)
 VALUES ('Проблема с установкой'),
@@ -116,18 +119,19 @@ VALUES ('Excel', 'программа для работы с электронны
        ('Visual Studio Code', 'редактор исходного кода, разработанный Microsoft для Windows, Linux и macOS.', 3);
 
 
-INSERT INTO priority(title, auto_appointment_hours)
-VALUES ('Низкий', 24),
-       ('Высокий', 4),
-       ('Критический', 1);
+INSERT INTO priority(title, auto_appointment_hours, points)
+VALUES ('Низкий', 24, 1),
+       ('Высокий', 4, 5),
+       ('Критический', 1, 100);
 
 INSERT INTO status(title)
 VALUES ('Создана'),
        ('В работе'),
        ('Решена'),
-       ('Отменена');
+       ('Отменена'),
+       ('Просрочена специалистом');
 
-INSERT INTO application(created_at, description, expiration_at, is_offline, solved_at, executor_staff_number,
+INSERT INTO application(created_at, description, appointment_at, is_offline, solved_at, executor_staff_number,
                         initiator_staff_number, priority_id, status_id)
 VALUES ('2023-05-16 15:36:38', 'Не открывается программа', '2023-05-30 15:36:38', false, null, 10000003, 10000000, 1,
         1),
@@ -144,6 +148,3 @@ VALUES (1, 2, 1),
 INSERT INTO application_device(application_id, application_device_type_id, device_serial_number)
 VALUES (3, 2, 100009),
        (4, 2, 100012);
-
-
-

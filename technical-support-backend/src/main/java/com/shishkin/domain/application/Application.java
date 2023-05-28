@@ -14,21 +14,17 @@ import java.util.Set;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@AllArgsConstructor
 @Builder
 @Getter
-@ToString
 public class Application extends BaseEntity {
     private String description;
     private boolean isOffline;
     @CreationTimestamp
     private LocalDateTime createdAt;
     private LocalDateTime solvedAt;
-    private LocalDateTime expirationAt;
-    @CreationTimestamp
-    private LocalDateTime lastAppointmentAt;
+    private LocalDateTime appointmentAt;
 
     @OneToOne(mappedBy = "application")
     private ApplicationDevice applicationDevice;
@@ -51,10 +47,10 @@ public class Application extends BaseEntity {
     private Priority priority;
 
     @ManyToOne
-    @JoinColumn(name = "initiator_staffNumber", referencedColumnName = "staffNumber")
+    @JoinColumn(name = "initiatorStaffNumber", referencedColumnName = "staffNumber")
     private Employee initiator;
 
     @ManyToOne
-    @JoinColumn(name = "executor_staffNumber", referencedColumnName = "staffNumber")
+    @JoinColumn(name = "executorStaffNumber", referencedColumnName = "staffNumber")
     private Employee executor;
 }

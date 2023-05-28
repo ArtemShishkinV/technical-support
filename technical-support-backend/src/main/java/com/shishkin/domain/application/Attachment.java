@@ -13,12 +13,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
 @Builder
 @Getter
-@ToString
 public class Attachment extends NamedBasedEntity {
     private byte[] file;
     @CreationTimestamp

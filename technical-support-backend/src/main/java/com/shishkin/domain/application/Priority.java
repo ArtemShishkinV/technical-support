@@ -4,14 +4,14 @@ import com.shishkin.domain.NamedBasedEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@AllArgsConstructor
+@Table
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = true)
 @Getter
-@ToString
 public class Priority extends NamedBasedEntity {
     private int autoAppointmentHours;
     private int points;

@@ -12,10 +12,8 @@ import java.util.Set;
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @Getter
-@ToString
 public class Department extends NamedBasedEntity {
     @OneToMany(mappedBy = "department")
     private Set<Employee> employees;

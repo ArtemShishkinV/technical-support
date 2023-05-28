@@ -9,12 +9,10 @@ import javax.persistence.*;
 
 @Entity
 @Table
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@AllArgsConstructor
 @Builder
 @Getter
-@ToString
 public class ApplicationSoftware extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "application_id", referencedColumnName = "id")
