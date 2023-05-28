@@ -18,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 public class Application extends BaseEntity {
     private String description;
     private boolean isOffline;

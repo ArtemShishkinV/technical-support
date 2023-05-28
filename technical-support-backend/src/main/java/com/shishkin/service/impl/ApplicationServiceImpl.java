@@ -9,8 +9,11 @@ import com.shishkin.domain.application.software.ApplicationSoftware;
 import com.shishkin.domain.employee.Employee;
 import com.shishkin.dto.application.ApplicationCreatedDto;
 import com.shishkin.dto.application.ApplicationDto;
+import com.shishkin.mapper.ApplicationDeviceMapper;
+import com.shishkin.mapper.ApplicationSoftwareMapper;
 import com.shishkin.repository.ApplicationDeviceRepository;
 import com.shishkin.repository.ApplicationDeviceTypeRepository;
+import com.shishkin.repository.ApplicationRepository;
 import com.shishkin.repository.ApplicationSoftwareRepository;
 import com.shishkin.repository.ApplicationSoftwareTypeRepository;
 import com.shishkin.repository.DeviceRepository;
@@ -32,7 +35,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ApplicationServiceImpl implements ApplicationService {
-
+    private final ApplicationDeviceMapper applicationDeviceMapper;
+    private final ApplicationSoftwareMapper applicationSoftwareMapper;
     private final ApplicationDeviceRepository applicationDeviceRepository;
     private final ApplicationSoftwareRepository applicationSoftwareRepository;
     private final EmployeeRepository employeeRepository;
@@ -43,6 +47,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     private final SoftwareRepository softwareRepository;
     private final ApplicationSoftwareTypeRepository applicationSoftwareTypeRepository;
+    private final ApplicationRepository applicationRepository;
 
     private final DeviceRepository deviceRepository;
     private final ApplicationDeviceTypeRepository applicationDeviceTypeRepository;
@@ -77,6 +82,16 @@ public class ApplicationServiceImpl implements ApplicationService {
         return createApplicationByType(application, applicationCreatedDto);
     }
 
+    @Override
+    public ApplicationDto changeStatus(ApplicationDto applicationDto) {
+        var basedDto = applicationDto.getBasedApplicationDto();
+        var status = statusRepository.findByTitle(basedDto.getStatus());
+        Application application = applicationRepository.getById(basedDto.getId());
+        application.setStatus(status);
+        applicationRepository.save(application);
+        return applicationDto;
+    }
+
     private Application createBaseApplication(ApplicationCreatedDto applicationCreatedDto) {
         LocalDateTime createdAt = LocalDateTime.now();
         Priority priority = priorityRepository.findByTitle(applicationCreatedDto.getPriority());
@@ -99,10 +114,10 @@ public class ApplicationServiceImpl implements ApplicationService {
                                                    ApplicationCreatedDto applicationCreatedDto) {
         if (ApplicationObjectType.DEVICE.getTitle().equals(applicationCreatedDto.getCategory())) {
             ApplicationDevice applicationDevice = createDeviceApplication(application, applicationCreatedDto);
-            return new ApplicationDto(applicationTypeService.save(applicationDevice));
+            return applicationDeviceMapper.valueOf(applicationTypeService.save(applicationDevice));
         }
         ApplicationSoftware applicationSoftware = createSoftwareApplication(application, applicationCreatedDto);
-        return new ApplicationDto(applicationTypeService.save(applicationSoftware));
+        return applicationSoftwareMapper.valueOf(applicationTypeService.save(applicationSoftware));
     }
 
     private ApplicationSoftware createSoftwareApplication(Application application,
@@ -127,8 +142,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     private List<ApplicationDto> combineApplications(List<ApplicationDevice> applicationsDevices,
                                                      List<ApplicationSoftware> applicationsSoftware) {
-        var applicationsDto = applicationsDevices.stream().map(ApplicationDto::new).toList();
-        var anotherApplicationsDto = applicationsSoftware.stream().map(ApplicationDto::new).toList();
+        var applicationsDto = applicationsDevices.stream().map(applicationDeviceMapper::valueOf).toList();
+        var anotherApplicationsDto = applicationsSoftware.stream().map(applicationSoftwareMapper::valueOf).toList();
 
         var result = new ArrayList<>(applicationsDto);
         result.addAll(anotherApplicationsDto);

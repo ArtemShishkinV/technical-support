@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Value
 @AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
-class BasedApplicationDto {
+public class BasedApplicationDto {
     Long id;
     String description;
     EmployeeDto initiator;
@@ -19,9 +19,8 @@ class BasedApplicationDto {
     String priority;
     boolean isOffline;
     LocalDateTime createdAt;
-//    LocalDateTime expirationAt;
 
-    BasedApplicationDto(Application application) {
+    public BasedApplicationDto(Application application) {
         this.id = application.getId();
         this.description = application.getDescription();
         this.initiator = new EmployeeDto(application.getInitiator());
@@ -30,6 +29,5 @@ class BasedApplicationDto {
         this.isOffline = application.isOffline();
         this.priority = application.getPriority().getTitle();
         this.createdAt = application.getCreatedAt();
-//        this.expirationAt = application.getExpirationAt();
     }
 }
