@@ -54,57 +54,6 @@ export const CreateApplication = () => {
             console.log(types)
         }, [application.category])
 
-
-        function showSelectType() {
-            if (application.category === "device")
-                return getDeviceApplicationTypes()
-            if (application.category === "software")
-                return getSoftwareApplicationTypes()
-        }
-
-        function getDeviceApplicationTypes() {
-            // /api/application-device-types
-            return [
-                {value: "device1", name: "Выдача"},
-                {value: "device2", name: "Ремонт"}
-            ]
-        }
-
-        function getSoftwareApplicationTypes() {
-            // /api/application-device-types
-            return [
-                {value: "", name: "Выберите тип"},
-                {value: "software1", name: "Проблема с лицензией"},
-                {value: "software2", name: "Трудности в работе"}
-            ]
-        }
-
-        // function showTypes(types) {
-        //     console.log(types)
-        //     if (types)
-        //         return (
-        //             <DefaultSelect
-        //                 options={types.slice(1)}
-        //                 value={application.type}
-        //                 defaultValue={types[0]}
-        //                 onChange={event => updateApplication({...application, type: event})}
-        //             />
-        //         )
-        // }
-
-        // function showPriorities() {
-        //     if (!isLoading)
-        //         return (
-        //             <DefaultSelect
-        //                 options={priorities.slice(1)}
-        //                 value={application.priority}
-        //                 defaultValue={priorities[0]}
-        //                 onChange={event => updateApplication({...application, priority: event})}
-        //             />
-        //         )
-        //     console.log(priorities)
-        // }
-
         return (
             <div className="create-application">
                 <div className="container">
@@ -130,8 +79,6 @@ export const CreateApplication = () => {
                             defaultValue={priorities[0]}
                             onChange={event => updateApplication({...application, priority: event})}
                         />
-                        {/*{showTypes(types)}*/}
-                        {/*{showPriorities()}*/}
                     </div>
                 </div>
             </div>
