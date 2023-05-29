@@ -15,3 +15,20 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+
+.create-application__main {
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-application__main select {
+    width: 100%;
+}
+
+.create-application__description {
+    resize: none;
+    height: 100px;
+    width: 100%;
+    justify-content: flex-start;
+}

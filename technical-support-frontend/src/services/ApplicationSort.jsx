@@ -3,13 +3,13 @@ import {sortDate} from "../utils/DatetimeUtils";
 const priorities = ["Низкий", "Высокий", "Критический"]
 
 export const sortApplications = (applications, sortType) => {
-    if (sortType === "default")
+    if (sortType === "По умолчанию")
         return [...applications].sort((a, b) => a.basedApplicationDto["id"] - b.basedApplicationDto["id"])
-    if (sortType === "priority")
+    if (sortType === "Сначала важные")
         return [...applications].sort((a, b) => sortByPriorities(a, b))
-    if (sortType === "old")
+    if (sortType === "Сначала старые")
         return [...applications].sort((a, b) => sortByOlder(a, b))
-    if (sortType === "new")
+    if (sortType === "Сначала новые")
         return [...applications].sort((a, b) => sortByNew(a, b))
     return applications
 }

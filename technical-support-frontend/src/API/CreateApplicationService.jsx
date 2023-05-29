@@ -5,10 +5,19 @@ export default class CreateApplicationService {
         const prioritiesRes = await axios.get("/api/priority")
         const applicationDeviceTypesRes = await axios.get("/api/application-type/device")
         const applicationSoftwareTypesRes = await axios.get("/api/application-type/software")
+        const devices = await axios.get("/api/device/types")
+        const software = await axios.get("/api/software/types")
         return {
             priorities: prioritiesRes.data,
             applicationDeviceTypes: applicationDeviceTypesRes.data,
             applicationSoftwareTypes: applicationSoftwareTypesRes.data,
+            deviceTypes: devices.data,
+            softwareTypes: software.data
         }
+    }
+
+    static async create(application) {
+        const response = await axios.post("/api/application/create", application)
+        return response.data;
     }
 }

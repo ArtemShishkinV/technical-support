@@ -9,11 +9,11 @@ import {sortApplications} from "../services/ApplicationSort";
 
 const Applications = () => {
     const filterOptions = [
-        {value: "", name: "Тип сортировки"},
-        {value: 'default', name: 'По умолчанию'},
-        {value: 'priority', name: 'Сначала важные'},
-        {value: 'new', name: 'Сначала новые'},
-        {value: 'old', name: 'Сначала старые'},
+        {id: "", title: "Тип сортировки"},
+        {id: 'default', title: 'По умолчанию'},
+        {id: 'priority', title: 'Сначала важные'},
+        {id: 'new', title: 'Сначала новые'},
+        {id: 'old', title: 'Сначала старые'},
     ]
 
     const [applications, updateApplications] = useState([])
@@ -21,6 +21,7 @@ const Applications = () => {
 
     const filteredApplications = useMemo(() => {
         if (applications.length !== 0) {
+            console.log(filter.sort)
             return sortApplications(applications, filter.sort);
         }
         return applications

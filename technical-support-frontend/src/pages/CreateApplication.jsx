@@ -4,6 +4,7 @@ import {DefaultSelect} from "../components/UI/DefaultSelect";
 import {AppContext} from "../AppContext";
 import CreateApplicationService from "../API/CreateApplicationService";
 import {useFetching} from "../hooks/UseFetching";
+import {LimitedTextarea} from "../components/LimitedTextArea";
 
 export const CreateApplication = () => {
         const categories = [
@@ -35,9 +36,14 @@ export const CreateApplication = () => {
             {id: 0, title: "Выберите тип"}
         ])
 
+        const x = () => {
+
+        }
+
+
         const [fetchModels, isModelsLoading, error] = useFetching(async () => {
             const response = await CreateApplicationService.getAllModels();
-            setPriorities([...priorities, response.priorities])
+            setPriorities([priorities[0], ...response.priorities])
             setModel(response)
         })
 
@@ -51,34 +57,55 @@ export const CreateApplication = () => {
                 setTypes([...temp, ...model.applicationDeviceTypes])
             if (application.category === "Заявка на ПО")
                 setTypes([...temp, ...model.applicationSoftwareTypes])
-            console.log(types)
         }, [application.category])
+
+        // useMemo(() => {
+        //
+        // }, [application.])
 
         return (
             <div className="create-application">
                 <div className="container">
                     <div className="create-application__inner">
                         <h1>Создание заявки</h1>
-                        <DefaultSelect
-                            options={categories.slice(1)}
-                            value={application.category}
-                            defaultValue={categories[0]}
-                            onChange={event =>
-                                updateApplication({...application, category: event})
-                            }
-                        />
-                        <DefaultSelect
-                            options={types.slice(1)}
-                            value={application.type}
-                            defaultValue={types[0]}
-                            onChange={event => updateApplication({...application, type: event})}
-                        />
-                        <DefaultSelect
-                            options={priorities.slice(1)}
-                            value={application.priority}
-                            defaultValue={priorities[0]}
-                            onChange={event => updateApplication({...application, priority: event})}
-                        />
+                        <div className="create-application__main">
+                            <DefaultSelect
+                                options={categories.slice(1)}
+                                value={application.category}
+                                defaultValue={categories[0]}
+                                onChange={event =>
+                                    updateApplication({...application, category: event})
+                                }
+                            />
+                            <DefaultSelect
+                                options={types.slice(1)}
+                                value={application.type}
+                                defaultValue={types[0]}
+                                onChange={event => updateApplication({...application, type: event})}
+                            />
+                            <DefaultSelect
+                                options={priorities.slice(1)}
+                                value={application.priority}
+                                defaultValue={priorities[0]}
+                                onChange={event => updateApplication({...application, priority: event})}
+                            />
+                            <DefaultSelect
+                                options={priorities.slice(1)}
+                                value={application.priority}
+                                defaultValue={priorities[0]}
+                                onChange={event => updateApplication({...application, priority: event})}
+                            />
+                            <LimitedTextarea
+                                value={application.description}
+                                limit={600}
+                            />
+                            <DefaultButton
+
+                            />
+
+                            {/*</DefaultButton>*/}
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -1,0 +1,18 @@
+@import "style.css";
+
+.myTextarea {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.myTextarea textarea {
+    height: 100px;
+    padding: 10px;
+}
+
+.myTextarea p {
+    text-align: right;
+    font-size: 14px;
+    opacity: 0.8;
+}
