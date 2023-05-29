@@ -1,5 +1,6 @@
 package com.shishkin.domain.application.software;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shishkin.domain.NamedBasedEntity;
 import lombok.*;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 @Builder
 @Getter
 public class ApplicationSoftwareType extends NamedBasedEntity {
+    @JsonIgnore
     @OneToMany(mappedBy = "applicationSoftwareType")
     private Set<ApplicationSoftware> applicationSoftware;
 }
