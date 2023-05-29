@@ -12,7 +12,7 @@ public interface ApplicationService {
 
     List<ApplicationDto> findAllNew();
 
-    ApplicationDto create(ApplicationCreatedDto applicationCreatedDto);
+
 
     ApplicationDto changeStatus(ApplicationDto applicationDto);
 }

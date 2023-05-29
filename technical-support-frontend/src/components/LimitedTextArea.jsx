@@ -1,8 +1,8 @@
 import React from 'react';
 import "../css/LimitedTextArea.css";
 
-export const LimitedTextarea = ({ rows, cols, value, limit }) => {
-    const [content, setContent] = React.useState(value.slice(0, limit));
+export const LimitedTextarea = ({rows, cols, value, limit, setValue}) => {
+    const [content, setContent] = React.useState([value]);
 
     const setFormattedContent = React.useCallback(
         text => {
@@ -19,7 +19,11 @@ export const LimitedTextarea = ({ rows, cols, value, limit }) => {
             <textarea
                 rows={rows}
                 cols={cols}
-                onChange={event => setFormattedContent(event.target.value)}
+                onChange={event => {
+                    setValue(event.target.value)
+                    setFormattedContent(event.target.value)
+                }
+                }
                 value={content}
             />
         </div>

@@ -2,9 +2,6 @@ package com.shishkin.controller;
 
 import com.shishkin.domain.device.DeviceType;
 import com.shishkin.dto.DeviceDto;
-import com.shishkin.mapper.DeviceMapper;
-import com.shishkin.repository.DeviceRepository;
-import com.shishkin.repository.DeviceTypeRepository;
 import com.shishkin.service.DeviceService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -25,6 +25,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Builder
 @Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "serial_number_generator")
@@ -36,7 +37,9 @@ public class Device {
     )
     private Long serialNumber;
 
+    @EqualsAndHashCode.Include
     private String title;
+
     private String description;
 
     @ManyToOne

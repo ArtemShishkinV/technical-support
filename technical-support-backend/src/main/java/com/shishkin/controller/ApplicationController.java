@@ -1,6 +1,5 @@
 package com.shishkin.controller;
 
-import com.shishkin.dto.application.ApplicationCreatedDto;
 import com.shishkin.dto.application.ApplicationDto;
 import com.shishkin.service.ApplicationService;
 import lombok.AllArgsConstructor;
@@ -33,10 +32,6 @@ public class ApplicationController {
         return applicationService.findAllArchive();
     }
 
-    @PostMapping("/create")
-    public ApplicationDto create(@RequestBody ApplicationCreatedDto applicationCreatedDto) {
-        return applicationService.create(applicationCreatedDto);
-    }
 
     @PostMapping("/change-status")
     public ApplicationDto changeStatus(@RequestBody ApplicationDto applicationDto) {

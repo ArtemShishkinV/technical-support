@@ -5,6 +5,7 @@ import {AppContext} from "../AppContext";
 import CreateApplicationService from "../API/CreateApplicationService";
 import {useFetching} from "../hooks/UseFetching";
 import {LimitedTextarea} from "../components/LimitedTextArea";
+import {DefaultButton} from "../components/UI/DefaultButton";
 
 export const CreateApplication = () => {
         const categories = [
@@ -17,18 +18,17 @@ export const CreateApplication = () => {
         const [application, updateApplication] = useState([
             {
                 category: "",
-                applicationObjectDto: "",
+                applicationObjectCategory: "",
+                applicationObjectTitle: "",
                 type: "",
-                description: "",
+                description: "fdsf",
                 initiator: user,
                 executor: null,
                 priority: "",
             }
         ])
 
-        const [model, setModel] = useState([])
-
-        const [priorities, setPriorities] = useState([
+        const [model, setModel] = useState([
             {id: 0, title: "Выберите приоритет"}
         ])
 
@@ -36,32 +36,48 @@ export const CreateApplication = () => {
             {id: 0, title: "Выберите тип"}
         ])
 
-        const x = () => {
+        const [applicationObjectCategory, setApplicationObjectCategory] = useState([
+            {id: 0, title: "Выберите тип объекта"}
+        ]);
 
-        }
-
+        const [applicationObject, setApplicationObject] = useState([
+            {id: 0, title: "Выберите объект"}
+        ]);
 
         const [fetchModels, isModelsLoading, error] = useFetching(async () => {
-            const response = await CreateApplicationService.getAllModels();
-            setPriorities([priorities[0], ...response.priorities])
-            setModel(response)
+            const response = await CreateApplicationService.getAllModels(user);
+            setModel(response.data)
         })
 
         useEffect(() => {
             fetchModels()
+            console.log(model)
         }, [])
 
         useMemo(() => {
-            const temp = [types[0]]
-            if (application.category === "Заявка на технику")
-                setTypes([...temp, ...model.applicationDeviceTypes])
-            if (application.category === "Заявка на ПО")
-                setTypes([...temp, ...model.applicationSoftwareTypes])
+            const tempTypes = [types[0]]
+            const tempCategories = [applicationObjectCategory[0]]
+            const tempObjects = [applicationObject[0]]
+            console.log(application)
+            if (application.category === "Заявка на технику") {
+                setTypes([...tempTypes, ...model.applicationDeviceTypes])
+                setApplicationObjectCategory([...tempCategories, ...model.deviceTypes])
+                setApplicationObject([...tempObjects, ...model.availableDevices])
+            }
+            if (application.category === "Заявка на ПО") {
+                setTypes([...tempTypes, ...model.applicationSoftwareTypes])
+                setApplicationObjectCategory([...tempCategories, ...model.softwareTypes])
+                setApplicationObject([...tempObjects, ...model.softwares])
+            }
         }, [application.category])
 
-        // useMemo(() => {
-        //
-        // }, [application.])
+
+
+        function createApplication() {
+            console.log(application)
+
+            // CreateApplicationService(application)
+        }
 
         return (
             <div className="create-application">
@@ -84,26 +100,31 @@ export const CreateApplication = () => {
                                 onChange={event => updateApplication({...application, type: event})}
                             />
                             <DefaultSelect
-                                options={priorities.slice(1)}
+                                options={model.priorities}
                                 value={application.priority}
-                                defaultValue={priorities[0]}
+                                defaultValue={{id: 0, title: "Выберите приоритет"}}
                                 onChange={event => updateApplication({...application, priority: event})}
                             />
                             <DefaultSelect
-                                options={priorities.slice(1)}
-                                value={application.priority}
-                                defaultValue={priorities[0]}
-                                onChange={event => updateApplication({...application, priority: event})}
+                                options={applicationObjectCategory.slice(1)}
+                                value={application.applicationObjectCategory}
+                                defaultValue={applicationObjectCategory[0]}
+                                onChange={event => updateApplication({...application, applicationObjectCategory: event})}
+                            />
+                            <DefaultSelect
+                                options={applicationObject.slice(1)}
+                                value={application.applicationObjectTitle}
+                                defaultValue={applicationObject[0]}
+                                onChange={event => updateApplication({...application, applicationObjectTitle: event})}
                             />
                             <LimitedTextarea
                                 value={application.description}
                                 limit={600}
+                                setValue={event => updateApplication({...application, description: event})}
                             />
-                            <DefaultButton
-
-                            />
-
-                            {/*</DefaultButton>*/}
+                            <DefaultButton onClick={createApplication}>
+                                Создать заявку
+                            </DefaultButton>
                         </div>
 
                     </div>
