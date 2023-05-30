@@ -9,6 +9,8 @@ import {DefaultButton} from "../components/UI/DefaultButton";
 import {IdSelect} from "../components/UI/IdSelect";
 import {applicationCategories, getObjectsByCategory} from "../utils/ApplicationUtils";
 import {useHistory} from "react-router-dom";
+import {DefaultInput} from "../components/UI/DefaultInput";
+import {DefaultLoader} from "../components/UI/DefaultLoader";
 
 export const CreateApplication = () => {
         const user = useContext(AppContext);
@@ -88,17 +90,71 @@ export const CreateApplication = () => {
 
         function createApplication() {
             console.log(application)
-            const response = CreateApplicationService.create({
-                initiator: user,
-                category: application.category,
-                applicationObjectId: application.applicationObjectId,
-                type: application.type,
-                description: application.description,
-                priority: application.priority,
-                isOffline: false
-            })
+            // const response = CreateApplicationService.create({
+            //     initiator: user,
+            //     category: application.category,
+            //     applicationObjectId: application.applicationObjectId,
+            //     type: application.type,
+            //     description: application.description,
+            //     priority: application.priority,
+            //     isOffline: false
+            // })
             alert("Заявка успешно создана!")
             navigate.push("/applications")
+        }
+
+        const mainPage = () => {
+            return (
+                <div className="create-application__main">
+                    <DefaultSelect
+                        options={applicationCategories.slice(1)}
+                        value={application.category}
+                        defaultValue={applicationCategories[0]}
+                        onChange={event =>
+                            updateApplication({...application, category: event})
+                        }
+                    />
+                    <DefaultSelect
+                        options={types.slice(1)}
+                        value={application.type}
+                        defaultValue={types[0]}
+                        onChange={event => updateApplication({...application, type: event})}
+                    />
+                    <DefaultSelect
+                        options={model.priorities}
+                        value={application.priority}
+                        defaultValue={{id: 0, title: "Выберите приоритет"}}
+                        onChange={event => updateApplication({...application, priority: event})}
+                    />
+                    <DefaultSelect
+                        options={applicationObjectCategory.slice(1)}
+                        value={application.applicationObjectCategory}
+                        defaultValue={applicationObjectCategory[0]}
+                        onChange={event => updateApplication({...application, applicationObjectCategory: event})}
+                    />
+                    <IdSelect
+                        options={applicationObject.slice(1)}
+                        value={application.applicationObjectId}
+                        defaultValue={applicationObject[0]}
+                        onChange={event => updateApplication({...application, applicationObjectId: event})}
+                    />
+                    <div className="create-application__offline">
+                        <div className="create-application__offline-title">Оффлайн решение</div>
+                        <DefaultInput
+                            type="checkbox"
+                            onChange={event => updateApplication({...application, isOffline: event.target.checked})}
+                        />
+                    </div>
+                    <LimitedTextarea
+                        value={application.description}
+                        limit={600}
+                        setValue={event => updateApplication({...application, description: event})}
+                    />
+                    <DefaultButton onClick={createApplication}>
+                        Создать заявку
+                    </DefaultButton>
+                </div>
+            )
         }
 
         return (
@@ -106,47 +162,12 @@ export const CreateApplication = () => {
                 <div className="container">
                     <div className="create-application__inner">
                         <h1>Создание заявки</h1>
-                        <div className="create-application__main">
-                            <DefaultSelect
-                                options={applicationCategories.slice(1)}
-                                value={application.category}
-                                defaultValue={applicationCategories[0]}
-                                onChange={event =>
-                                    updateApplication({...application, category: event})
-                                }
-                            />
-                            <DefaultSelect
-                                options={types.slice(1)}
-                                value={application.type}
-                                defaultValue={types[0]}
-                                onChange={event => updateApplication({...application, type: event})}
-                            />
-                            <DefaultSelect
-                                options={model.priorities}
-                                value={application.priority}
-                                defaultValue={{id: 0, title: "Выберите приоритет"}}
-                                onChange={event => updateApplication({...application, priority: event})}
-                            />
-                            <DefaultSelect
-                                options={applicationObjectCategory.slice(1)}
-                                value={application.applicationObjectCategory}
-                                defaultValue={applicationObjectCategory[0]}
-                                onChange={event => updateApplication({...application, applicationObjectCategory: event})}
-                            />
-                            <IdSelect
-                                options={applicationObject.slice(1)}
-                                value={application.applicationObjectId}
-                                defaultValue={applicationObject[0]}
-                                onChange={event => updateApplication({...application, applicationObjectId: event})}
-                            />
-                            <LimitedTextarea
-                                value={application.description}
-                                limit={600}
-                                setValue={event => updateApplication({...application, description: event})}
-                            />
-                            <DefaultButton onClick={createApplication}>
-                                Создать заявку
-                            </DefaultButton>
+                        <div>
+                            {isModelsLoading
+                                ? <DefaultLoader/>
+                                : mainPage()
+                            }
+
                         </div>
 
                     </div>
