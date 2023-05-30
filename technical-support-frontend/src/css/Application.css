@@ -1,5 +1,36 @@
 .application__inner {
     display: flex;
+    margin: 100px auto;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    align-items: center;
+}
+
+textarea {
+    height: 100px;
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0;
+    resize: none;
+}
+
+.application__info {
+    width: 100%;
+}
+
+.application__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.application__buttons-solo {
     justify-content: center;
-    margin-top: 100px;
+}
+
+
+.application__inner h2 {
+    margin-top: 0;
+    margin-bottom: 50px;
 }

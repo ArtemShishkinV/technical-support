@@ -24,12 +24,10 @@ export const Application = () => {
     return (
         <div className="application__wrapper">
             <div className="container">
-                <div className="application__inner">
-                    {isLoading
-                        ? <DefaultLoader/>
-                        : <ApplicationIdPage application={application}/>
-                    }
-                </div>
+                {isLoading
+                    ? <DefaultLoader/>
+                    : <ApplicationIdPage application={application}/>
+                }
             </div>
         </div>
     );

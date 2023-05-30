@@ -1,12 +1,26 @@
-// export const getDevicesByApplicationType = (objects, type) => {
-//     return objects.filter(item => item.category === type);
-// }
+import {DefaultButton} from "../components/UI/DefaultButton";
 
 export const applicationCategories = [
     {id: 0, title: "Выберите категорию", url: ""},
     {id: 1, title: "Заявка на технику", url: "device"},
     {id: 2, title: "Заявка на ПО", url: "software"}
 ]
+
+export const getButtonByApplicationStatus = (status) => {
+    if (status === "Создана")
+        return (
+            <div className="application__buttons application__buttons-solo">
+                <DefaultButton>Взять в работу</DefaultButton>
+            </div>
+        )
+    if (status === "В работе")
+        return (
+            <div className="application__buttons">
+                <DefaultButton>Решить</DefaultButton>
+                <DefaultButton>Отменить</DefaultButton>
+            </div>
+        )
+}
 
 export const getApplicationCategoryUrl = (title) => {
     return applicationCategories.filter(item => item.title === title).pop()
