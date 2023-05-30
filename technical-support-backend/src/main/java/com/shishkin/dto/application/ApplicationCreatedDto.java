@@ -14,5 +14,5 @@ public class ApplicationCreatedDto {
       String type;
       String priority;
       boolean isOffline;
-      ApplicationObjectDto applicationObjectDto;
+      Long applicationObjectId;
 }

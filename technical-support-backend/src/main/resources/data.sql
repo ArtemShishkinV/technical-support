@@ -85,7 +85,7 @@ VALUES (nextval('device_seq'), 1, 1, 10000000, 'Huawei Mateview',
 
 
 INSERT INTO application_device_type(title)
-VALUES ('Выдача'),
+VALUES ('Заказать'),
        ('Ремонт'),
        ('Сдача');
 

@@ -33,4 +33,6 @@ public interface ApplicationDeviceRepository extends JpaRepository<ApplicationDe
             nativeQuery = true
     )
     List<ApplicationDevice> findAllArchive();
+
+    ApplicationDevice findByApplicationId(Long id);
 }

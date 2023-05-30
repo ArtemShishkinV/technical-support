@@ -12,7 +12,7 @@ public interface ApplicationService {
 
     List<ApplicationDto> findAllNew();
 
-
+    ApplicationDto findByCategoryAndId(String category, Long id);
 
     ApplicationDto changeStatus(ApplicationDto applicationDto);
 }

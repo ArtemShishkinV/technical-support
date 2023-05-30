@@ -90,7 +90,7 @@ public class ApplicationCreateServiceImpl implements ApplicationCreateService {
         String type = applicationCreatedDto.getType();
         return ApplicationSoftware.builder()
                 .application(application)
-                .software(softwareRepository.getById(applicationCreatedDto.getApplicationObjectDto().getId()))
+                .software(softwareRepository.getById(applicationCreatedDto.getApplicationObjectId()))
                 .applicationSoftwareType(applicationSoftwareTypeRepository.findByTitle(type))
                 .build();
     }
@@ -101,7 +101,7 @@ public class ApplicationCreateServiceImpl implements ApplicationCreateService {
         ApplicationDevice.ApplicationDeviceBuilder builder = ApplicationDevice.builder()
                 .application(application)
                 .applicationDeviceType(applicationDeviceTypeRepository.findByTitle(type));
-        return builder.device(deviceRepository.getById(applicationCreatedDto.getApplicationObjectDto().getId())).build();
+        return builder.device(deviceRepository.getById(applicationCreatedDto.getApplicationObjectId())).build();
     }
 
 

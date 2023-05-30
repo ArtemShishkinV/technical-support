@@ -4,27 +4,25 @@ import {DefaultSelect} from "../components/UI/DefaultSelect";
 import {AppContext} from "../AppContext";
 import CreateApplicationService from "../API/CreateApplicationService";
 import {useFetching} from "../hooks/UseFetching";
-import {LimitedTextarea} from "../components/LimitedTextArea";
+import {LimitedTextarea} from "../components/UI/LimitedTextArea";
 import {DefaultButton} from "../components/UI/DefaultButton";
+import {IdSelect} from "../components/UI/IdSelect";
+import {applicationCategories, getObjectsByCategory} from "../utils/ApplicationUtils";
+import {useHistory} from "react-router-dom";
 
 export const CreateApplication = () => {
-        const categories = [
-            {id: 0, title: "Выберите категорию"},
-            {id: 1, title: "Заявка на технику"},
-            {id: 2, title: "Заявка на ПО"}
-        ]
         const user = useContext(AppContext);
+        const navigate = useHistory();
 
         const [application, updateApplication] = useState([
             {
                 category: "",
                 applicationObjectCategory: "",
-                applicationObjectTitle: "",
+                applicationObjectId: "",
                 type: "",
-                description: "fdsf",
-                initiator: user,
-                executor: null,
+                description: "",
                 priority: "",
+                isOffline: false
             }
         ])
 
@@ -47,36 +45,60 @@ export const CreateApplication = () => {
         const [fetchModels, isModelsLoading, error] = useFetching(async () => {
             const response = await CreateApplicationService.getAllModels(user);
             setModel(response.data)
+            console.log(response.data)
         })
 
         useEffect(() => {
             fetchModels()
-            console.log(model)
         }, [])
 
         useMemo(() => {
             const tempTypes = [types[0]]
             const tempCategories = [applicationObjectCategory[0]]
-            const tempObjects = [applicationObject[0]]
-            console.log(application)
             if (application.category === "Заявка на технику") {
                 setTypes([...tempTypes, ...model.applicationDeviceTypes])
                 setApplicationObjectCategory([...tempCategories, ...model.deviceTypes])
-                setApplicationObject([...tempObjects, ...model.availableDevices])
             }
             if (application.category === "Заявка на ПО") {
                 setTypes([...tempTypes, ...model.applicationSoftwareTypes])
                 setApplicationObjectCategory([...tempCategories, ...model.softwareTypes])
-                setApplicationObject([...tempObjects, ...model.softwares])
             }
         }, [application.category])
 
+        useMemo(() => {
+            const tempObjects = [applicationObject[0]]
+            let devices = []
+            if (application.category === "Заявка на технику") {
+                if (application.type === "Заказать") {
+                    devices = getObjectsByCategory(model.availableDevices, application.applicationObjectCategory)
+                    setApplicationObject([...tempObjects, ...devices])
+                } else {
+                    devices = getObjectsByCategory(model.myDevices, application.applicationObjectCategory)
+                    setApplicationObject([...tempObjects, ...devices])
+                }
+                console.log(devices)
+            }
+            if (application.category === "Заявка на ПО") {
+                const software = getObjectsByCategory(model.softwares, application.applicationObjectCategory)
+                setApplicationObject([...tempObjects, ...software])
+                console.log(software)
+            }
+        }, [application.type, application.applicationObjectCategory, application.category])
 
 
         function createApplication() {
             console.log(application)
-
-            // CreateApplicationService(application)
+            const response = CreateApplicationService.create({
+                initiator: user,
+                category: application.category,
+                applicationObjectId: application.applicationObjectId,
+                type: application.type,
+                description: application.description,
+                priority: application.priority,
+                isOffline: false
+            })
+            alert("Заявка успешно создана!")
+            navigate.push("/applications")
         }
 
         return (
@@ -86,9 +108,9 @@ export const CreateApplication = () => {
                         <h1>Создание заявки</h1>
                         <div className="create-application__main">
                             <DefaultSelect
-                                options={categories.slice(1)}
+                                options={applicationCategories.slice(1)}
                                 value={application.category}
-                                defaultValue={categories[0]}
+                                defaultValue={applicationCategories[0]}
                                 onChange={event =>
                                     updateApplication({...application, category: event})
                                 }
@@ -111,11 +133,11 @@ export const CreateApplication = () => {
                                 defaultValue={applicationObjectCategory[0]}
                                 onChange={event => updateApplication({...application, applicationObjectCategory: event})}
                             />
-                            <DefaultSelect
+                            <IdSelect
                                 options={applicationObject.slice(1)}
-                                value={application.applicationObjectTitle}
+                                value={application.applicationObjectId}
                                 defaultValue={applicationObject[0]}
-                                onChange={event => updateApplication({...application, applicationObjectTitle: event})}
+                                onChange={event => updateApplication({...application, applicationObjectId: event})}
                             />
                             <LimitedTextarea
                                 value={application.description}

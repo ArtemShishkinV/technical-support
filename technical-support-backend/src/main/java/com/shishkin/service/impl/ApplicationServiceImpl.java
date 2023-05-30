@@ -1,6 +1,7 @@
 package com.shishkin.service.impl;
 
 import com.shishkin.domain.application.Application;
+import com.shishkin.domain.application.ApplicationObjectType;
 import com.shishkin.domain.application.device.ApplicationDevice;
 import com.shishkin.domain.application.software.ApplicationSoftware;
 import com.shishkin.dto.application.ApplicationDto;
@@ -58,6 +59,14 @@ public class ApplicationServiceImpl implements ApplicationService {
         return combineApplications(allArchiveDevice, allArchiveSoftware);
     }
 
+    @Override
+    public ApplicationDto findByCategoryAndId(String category, Long id) {
+        ApplicationObjectType applicationObjectType = ApplicationObjectType.valueOf(category.toUpperCase());
+        if (ApplicationObjectType.SOFTWARE.equals(applicationObjectType)) {
+            return applicationSoftwareMapper.valueOf(applicationSoftwareRepository.findByApplicationId(id));
+        }
+        return applicationDeviceMapper.valueOf(applicationDeviceRepository.findByApplicationId(id));
+    }
 
     @Override
     public ApplicationDto changeStatus(ApplicationDto applicationDto) {

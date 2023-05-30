@@ -33,4 +33,6 @@ public interface ApplicationSoftwareRepository extends JpaRepository<Application
             nativeQuery = true
     )
     List<ApplicationSoftware> findAllArchive();
+
+    ApplicationSoftware findByApplicationId(Long id);
 }

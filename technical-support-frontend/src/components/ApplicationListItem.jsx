@@ -3,8 +3,16 @@ import "../css/Applications.css";
 import {ApplicationPriorityIcon} from "./UI/ApplicationPriorityIcon";
 import {getDatetimeToString} from "../utils/DatetimeUtils";
 import {DefaultButton} from "./UI/DefaultButton";
+import {useHistory} from "react-router-dom";
+import {getApplicationCategoryUrl} from "../utils/ApplicationUtils";
 
 export const ApplicationListItem = ({application}) => {
+    const navigate = useHistory();
+
+    const getApplicationUrl = () => {
+        return `/applications/${getApplicationCategoryUrl(application.category).url}/${application.basedApplicationDto.id}`
+    }
+
     return (
         <div className="application">
             <div className="application-title application-div">
@@ -27,7 +35,9 @@ export const ApplicationListItem = ({application}) => {
                     className="application-date">Создана: {getDatetimeToString(application.basedApplicationDto.createdAt)}</div>
             </div>
             <div className="application-go">
-                <DefaultButton>Перейти</DefaultButton>
+                <DefaultButton onClick={() => navigate.push(getApplicationUrl())}>
+                    Перейти
+                </DefaultButton>
             </div>
         </div>
     );

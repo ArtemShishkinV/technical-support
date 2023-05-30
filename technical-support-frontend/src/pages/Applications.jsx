@@ -1,11 +1,12 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {actives, archives, news} from "./data";
 import "../css/Applications.css";
 import {DefaultButton} from "../components/UI/DefaultButton";
 import {DefaultFilter} from "../components/DefaultFilter";
 import {DefaultCategories} from "../components/DefaultCategories";
 import {ApplicationList} from "../components/ApplicationList";
 import {sortApplications} from "../services/ApplicationSort";
+import ApplicationService from "../API/ApplicationService";
+import {DefaultLoader} from "../components/UI/DefaultLoader";
 
 const Applications = () => {
     const filterOptions = [
@@ -18,6 +19,7 @@ const Applications = () => {
 
     const [applications, updateApplications] = useState([])
     const [filter, setFilter] = useState({sort: '', query: ''})
+    const [isLoading, setLoading] = useState(false)
 
     const filteredApplications = useMemo(() => {
         if (applications.length !== 0) {
@@ -29,19 +31,29 @@ const Applications = () => {
 
 
     useEffect(() => {
-        getActiveApplications()
+        getNewApplications()
     }, [])
 
-    function getActiveApplications() {
-        updateApplications(actives);
+    async function getApplications(callback) {
+        setLoading(true)
+        setTimeout(async () => {
+            const resp = await callback();
+            updateApplications(resp);
+            console.log(resp)
+            setLoading(false)
+        }, 1000)
     }
 
-    function getArchiveApplications() {
-        updateApplications(archives)
+    async function getActiveApplications() {
+        await getApplications(ApplicationService.getActiveApplications)
     }
 
-    function getNewApplications() {
-        updateApplications(news)
+    async function getArchiveApplications() {
+        await getApplications(ApplicationService.getArchiveApplications)
+    }
+
+    async function getNewApplications() {
+        await getApplications(ApplicationService.getNewApplications)
     }
 
     return (
@@ -64,7 +76,12 @@ const Applications = () => {
                         setFilter={setFilter}
                         options={filterOptions}
                     />
-                    <ApplicationList applications={filteredApplications}/>
+                    {
+                        isLoading
+                            ? <DefaultLoader/>
+                            : <ApplicationList applications={filteredApplications}/>
+                    }
+
                 </div>
             </div>
         </div>

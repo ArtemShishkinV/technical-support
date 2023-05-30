@@ -1,5 +1,5 @@
 import React from 'react';
-import "../css/LimitedTextArea.css";
+import "../../css/LimitedTextArea.css";
 
 export const LimitedTextarea = ({rows, cols, value, limit, setValue}) => {
     const [content, setContent] = React.useState([value]);
