@@ -161,8 +161,8 @@ export const CreateApplication = () => {
             <div className="create-application">
                 <div className="container">
                     <div className="create-application__inner">
-                        <h1>Создание заявки</h1>
                         <div>
+                            <h1>Создание заявки</h1>
                             {isModelsLoading
                                 ? <DefaultLoader/>
                                 : mainPage()

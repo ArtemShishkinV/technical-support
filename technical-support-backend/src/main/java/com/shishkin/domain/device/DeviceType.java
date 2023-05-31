@@ -21,6 +21,7 @@ import java.util.Set;
 @Getter
 public class DeviceType extends NamedBasedEntity {
     private int countReplacementDays;
+    private String icon;
     @JsonIgnore
     @OneToMany(mappedBy = "deviceType")
     private Set<Device> devices;

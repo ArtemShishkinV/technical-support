@@ -5,7 +5,10 @@ import {UserInfo} from "../components/UserInfo";
 export const Profile = () => {
     const user = useContext(AppContext)
 
+
     return (
-        <UserInfo user={user}/>
+        <div>
+            <UserInfo user={user}/>
+        </div>
     );
 };

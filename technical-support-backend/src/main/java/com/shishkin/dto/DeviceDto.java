@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDate;
+
 @Value
 @Builder
 @AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
@@ -16,5 +18,7 @@ public class DeviceDto {
     String description;
     String type;
     String condition;
+    String icon;
+    LocalDate issuedAt;
     EmployeeDto owner;
 }

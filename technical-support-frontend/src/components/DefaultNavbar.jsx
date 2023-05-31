@@ -23,7 +23,7 @@ export const DefaultNavbar = () => {
             <div className="container">
                 <div className="navbar">
                     <ul className="navbar__list">
-                        <li><a href={`/profile/${user.staffNumber}`}>Профиль</a></li>
+                        <li><a href="/profile">Профиль</a></li>
                         <li><a href="/applications">Заявки</a></li>
                         <li><a href="/devices">Устройства</a></li>
                         {getEmployeesLink()}

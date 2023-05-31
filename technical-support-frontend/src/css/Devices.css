@@ -1,0 +1,50 @@
+@import "style.css";
+
+.device-list__inner {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+    align-items: center;
+}
+
+.device-list__inner h1 {
+    margin-bottom: 60px;
+}
+
+.device-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.device-list__item-info {
+    width: 100%;
+}
+
+.device-list__item {
+    background-color: white;
+    border-radius: 15px;
+    border: 3px solid var(--dark-blue);
+    padding: 30px;
+    width: 350px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.device-list__item img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.device-list__item-title {
+    /*margin-bottom: 20px;*/
+    font-size: 18px;
+}
+
+.device-list__item .myBtn {
+    margin-top: 20px;
+    width: 100%;
+}

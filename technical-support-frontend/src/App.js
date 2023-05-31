@@ -9,6 +9,7 @@ import {user} from "./pages/data";
 import {CreateApplication} from "./pages/CreateApplication";
 import {Application} from "./pages/Application";
 import {Profile} from "./pages/Profile";
+import Devices from "./pages/Devices";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/" exact={true} component={Home}/>
                         <Route path="/employees" exact={true} component={Employees}/>
                         <Route path="/profile" exact={true} component={Profile}></Route>
+                        <Route path="/devices" exact={true} component={Devices}></Route>
                         <Route path="/applications" exact={true} component={Applications}/>
                         <Route path="/applications/:category/:id" exact={true} component={Application}/>
                         <Route path="/create-application" exact={true} component={CreateApplication}/>

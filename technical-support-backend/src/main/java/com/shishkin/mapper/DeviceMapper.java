@@ -21,6 +21,8 @@ public class DeviceMapper {
                 .type(device.getDeviceType().getTitle())
                 .condition(device.getDeviceCondition().getTitle())
                 .owner(new EmployeeDto(device.getOwner()))
+                .issuedAt(device.getIssuedAt())
+                .icon(device.getDeviceType().getIcon())
                 .build();
     }
 

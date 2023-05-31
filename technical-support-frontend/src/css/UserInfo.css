@@ -7,6 +7,10 @@
     margin: 100px auto;
     max-width: 570px;
     width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    border: 3px solid var(--dark-blue);
+    padding: 30px;
 }
 
 .user-info__avatar {
@@ -37,14 +41,16 @@
 }
 
 .user-info__contacts-title {
-    width: 220px;
+    min-width: 220px;
 }
 
 .user-info__contacts-value {
-    background-color: white;
+    background-color: salmon;
     border-radius: 10px;
+    color: black;
     padding: 10px;
     display: flex;
+    min-width: 220px;
 }
 
 .user-info__contacts-value img {
@@ -64,4 +70,11 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+}
+
+.user-info__devices {
+    margin-top: 30px;
+    background-color: salmon;
+    font-weight: bold;
+    width: 100%;
 }
