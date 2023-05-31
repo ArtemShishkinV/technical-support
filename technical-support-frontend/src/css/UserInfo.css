@@ -1,0 +1,67 @@
+@import "style.css";
+
+.user-info__inner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px auto;
+    max-width: 570px;
+    width: 100%;
+}
+
+.user-info__avatar {
+    width: 128px;
+    height: 128px;
+    margin: 0 46px;
+}
+
+.user-info__main {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-info__contacts {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info__contacts div {
+    margin-bottom: 20px;
+}
+
+.user-info__contact-item {
+    display: flex;
+    align-items: center;
+}
+
+.user-info__contacts-title {
+    width: 220px;
+}
+
+.user-info__contacts-value {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+.user-info__contacts-value img {
+    margin-right: 10px;
+}
+
+.user-info__post {
+    margin-bottom: 15px;
+}
+
+.user-info__address {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.user-info__workplace {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

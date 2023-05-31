@@ -8,6 +8,7 @@ import {AppContext} from "./AppContext";
 import {user} from "./pages/data";
 import {CreateApplication} from "./pages/CreateApplication";
 import {Application} from "./pages/Application";
+import {Profile} from "./pages/Profile";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Switch>
                         <Route path="/" exact={true} component={Home}/>
                         <Route path="/employees" exact={true} component={Employees}/>
+                        <Route path="/profile" exact={true} component={Profile}></Route>
                         <Route path="/applications" exact={true} component={Applications}/>
                         <Route path="/applications/:category/:id" exact={true} component={Application}/>
                         <Route path="/create-application" exact={true} component={CreateApplication}/>
