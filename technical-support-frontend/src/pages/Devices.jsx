@@ -7,12 +7,12 @@ import {DeviceList} from "../components/DeviceList";
 import "../css/Devices.css";
 
 const Devices = () => {
-    const user = useContext(AppContext)
+    const context = useContext(AppContext)
 
     const [devices, setDevices] = useState([])
 
     const [fetchDevices, isLoading, error] = useFetching(async () => {
-        const resp = await DeviceService.getByOwner(user)
+        const resp = await DeviceService.getByOwner(context.user)
         setDevices(resp.data)
     })
 

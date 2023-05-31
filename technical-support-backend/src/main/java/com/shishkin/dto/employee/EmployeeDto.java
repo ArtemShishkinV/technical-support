@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
 public class EmployeeDto {
     Long staffNumber;
-    String login;
     String firstName;
     String lastName;
     String middleName;
@@ -29,7 +28,6 @@ public class EmployeeDto {
 
     public EmployeeDto(Employee employee) {
         this.staffNumber = employee.getStaffNumber();
-        this.login = employee.getLogin();
         this.firstName = employee.getFirstName();
         this.lastName = employee.getLastName();
         this.middleName = employee.getMiddleName();

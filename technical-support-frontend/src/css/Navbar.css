@@ -20,3 +20,7 @@
 .navbar__list li {
     margin-right: 20px;
 }
+
+.navbar__title {
+    margin: 62px;
+}

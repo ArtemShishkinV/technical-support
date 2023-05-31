@@ -21,7 +21,7 @@ public record EmployeeDetails(Employee employee) implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.employee.getLogin();
+        return this.employee.getEmail();
     }
 
     @Override

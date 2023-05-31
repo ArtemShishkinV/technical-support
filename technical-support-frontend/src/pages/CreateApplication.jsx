@@ -13,7 +13,7 @@ import {DefaultInput} from "../components/UI/DefaultInput";
 import {DefaultLoader} from "../components/UI/DefaultLoader";
 
 export const CreateApplication = () => {
-        const user = useContext(AppContext);
+        const context = useContext(AppContext);
         const navigate = useHistory();
 
         const [application, updateApplication] = useState([
@@ -45,7 +45,7 @@ export const CreateApplication = () => {
         ]);
 
         const [fetchModels, isModelsLoading, error] = useFetching(async () => {
-            const response = await CreateApplicationService.getAllModels(user);
+            const response = await CreateApplicationService.getAllModels(context.user);
             setModel(response.data)
             console.log(response.data)
         })
@@ -91,7 +91,7 @@ export const CreateApplication = () => {
         function createApplication() {
             console.log(application)
             // const response = CreateApplicationService.create({
-            //     initiator: user,
+            //     initiator: context.user,
             //     category: application.category,
             //     applicationObjectId: application.applicationObjectId,
             //     type: application.type,
@@ -167,9 +167,7 @@ export const CreateApplication = () => {
                                 ? <DefaultLoader/>
                                 : mainPage()
                             }
-
                         </div>
-
                     </div>
                 </div>
             </div>

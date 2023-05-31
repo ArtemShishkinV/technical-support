@@ -1,0 +1,14 @@
+@import "style.css";
+
+.login__inner {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 80px auto;
+    align-items: center;
+}
+
+.login__inner .myBtn {
+    margin-top: 20px;
+}
+

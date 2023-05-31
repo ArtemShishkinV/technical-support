@@ -3,12 +3,11 @@ import {AppContext} from "../AppContext";
 import {UserInfo} from "../components/UserInfo";
 
 export const Profile = () => {
-    const user = useContext(AppContext)
-
+    const context = useContext(AppContext)
 
     return (
         <div>
-            <UserInfo user={user}/>
+            <UserInfo user={context.user}/>
         </div>
     );
 };
