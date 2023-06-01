@@ -24,3 +24,11 @@ services:
       - '8081:8081'
     depends_on:
       - postgres
+  frontend:
+    build: technical-support-frontend/./
+    container_name: technical-support-frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./technical-support-frontend:/app

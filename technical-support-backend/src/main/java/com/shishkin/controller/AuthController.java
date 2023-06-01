@@ -2,7 +2,6 @@ package com.shishkin.controller;
 
 import com.shishkin.dto.AuthDto;
 import com.shishkin.dto.employee.EmployeeDto;
-import com.shishkin.security.EmployeeDetails;
 import com.shishkin.security.EmployeeDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

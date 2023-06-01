@@ -9,6 +9,7 @@ const Login = () => {
 
     const login = event => {
         event.preventDefault();
+        console.log("123")
         context.setIsAuth(true);
         localStorage.setItem('auth', 'true')
     }
