@@ -17,7 +17,6 @@ function App() {
     }, [])
 
     return (
-        //TODO: Сделать получение пользователя по запросу /api/profile
         <AppContext.Provider value={{
             user,
             isAuth,

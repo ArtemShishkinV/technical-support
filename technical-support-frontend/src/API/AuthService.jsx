@@ -2,11 +2,11 @@ import axios from "axios";
 
 const API_URL = "/api/auth/";
 
-class AuthService {
-    login(email, password) {
+export class AuthService {
+    static (email, password) {
         return axios
             .post(API_URL + "login", {
-                email,
+                username: email,
                 password
             })
             .then(response => {
