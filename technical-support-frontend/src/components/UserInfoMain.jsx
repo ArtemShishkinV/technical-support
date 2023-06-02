@@ -2,6 +2,7 @@ import React from 'react';
 import {AvatarImage} from "./UI/AvatarImage";
 import {UserContactInfo} from "./UserContactInfo";
 import {getPhoneNumber} from "../utils/PhoneUtils";
+import UserPhoneMenu from "./UserPhoneMenu";
 
 const UserInfoMain = ({user}) => {
 
@@ -23,10 +24,8 @@ const UserInfoMain = ({user}) => {
                     value={user.email}
                     img={"email"}
                 />
-                <UserContactInfo
-                    title={"Номер телефона"}
-                    value={getPhoneNumber(user.phoneNumber)}
-                    img={"phone"}
+                <UserPhoneMenu
+                    user={user}
                 />
             </div>
             <div className="user-info__address">
