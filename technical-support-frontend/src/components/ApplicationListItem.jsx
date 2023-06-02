@@ -4,7 +4,7 @@ import {ApplicationPriorityIcon} from "./UI/ApplicationPriorityIcon";
 import {getDatetimeToString} from "../utils/DatetimeUtils";
 import {DefaultButton} from "./UI/DefaultButton";
 import {useHistory} from "react-router-dom";
-import {getApplicationCategoryUrl} from "../utils/ApplicationUtils";
+import {getApplicationCategoryUrl, getApplicationColorByPriority} from "../utils/ApplicationUtils";
 
 export const ApplicationListItem = ({application}) => {
     const navigate = useHistory();
@@ -13,11 +13,17 @@ export const ApplicationListItem = ({application}) => {
         return `/applications/${getApplicationCategoryUrl(application.category).url}/${application.basedApplicationDto.id}`
     }
 
+    const applicationColor = getApplicationColorByPriority(application)
+    const applicationBorder = {
+        border: `3px double ${applicationColor}`
+    }
+    console.log(applicationColor)
+
     return (
-        <div className="application">
+        <div className="application" style={applicationBorder}>
             <div className="application-title application-div">
                 <div className="application-id">
-                    <ApplicationPriorityIcon priority={application.basedApplicationDto.priority}/>
+                    <ApplicationPriorityIcon color={applicationColor}/>
                     <div><b>#{application.basedApplicationDto.id}</b></div>
                     <div className="application-category">{application.category}</div>
                 </div>
@@ -32,10 +38,10 @@ export const ApplicationListItem = ({application}) => {
             <div className="application-footer application-div">
                 <div className="application-status">{application.basedApplicationDto.status}</div>
                 <div
-                    className="application-date">Создана: {getDatetimeToString(application.basedApplicationDto.createdAt)}</div>
+                    className="application-date">{getDatetimeToString(application.basedApplicationDto.createdAt)}</div>
             </div>
             <div className="application-go">
-                <DefaultButton onClick={() => navigate.push(getApplicationUrl())}>
+                <DefaultButton style={applicationBorder} onClick={() => navigate.push(getApplicationUrl())}>
                     Перейти
                 </DefaultButton>
             </div>

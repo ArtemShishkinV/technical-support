@@ -51,6 +51,12 @@ export const getPropsByUserRole = ({user, application}) => {
     }
 }
 
+export const getApplicationColorByPriority = (application) => {
+    if (application.basedApplicationDto.priority === "Критический") return "#fa0202";
+    if (application.basedApplicationDto.priority === "Высокий") return "#FF8000";
+    if (application.basedApplicationDto.priority === "Низкий") return "#009900";
+}
+
 // export async function getApplicationObject(application) {
 //     if (application.category === "Заявка на технику") {
 //         return await
