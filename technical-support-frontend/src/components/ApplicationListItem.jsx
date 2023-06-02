@@ -4,10 +4,14 @@ import {ApplicationPriorityIcon} from "./UI/ApplicationPriorityIcon";
 import {getDatetimeToString} from "../utils/DatetimeUtils";
 import {DefaultButton} from "./UI/DefaultButton";
 import {useHistory} from "react-router-dom";
-import {getApplicationCategoryUrl, getApplicationColorByPriority} from "../utils/ApplicationUtils";
+import {getApplicationCategoryUrl, getApplicationColorByPriority, getPropsByUserRole} from "../utils/ApplicationUtils";
+import {AuthService} from "../API/AuthService";
 
 export const ApplicationListItem = ({application}) => {
     const navigate = useHistory();
+    const context = AuthService.isAuthenticated();
+
+    const targetUser = getPropsByUserRole({user: context.user, application});
 
     const getApplicationUrl = () => {
         return `/applications/${getApplicationCategoryUrl(application.category).url}/${application.basedApplicationDto.id}`
@@ -29,7 +33,7 @@ export const ApplicationListItem = ({application}) => {
                 </div>
             </div>
             <div className="application-employee application-div">
-                Клиент: {application.basedApplicationDto.executor.lastName} {application.basedApplicationDto.executor.firstName} {application.basedApplicationDto.executor.middleName}
+                {targetUser.userTitle}: {targetUser.applicationUser.lastName} {targetUser.applicationUser.firstName} {targetUser.applicationUser.middleName}
             </div>
             <div className="application-type application-div">Тип услуги: {application.type}</div>
             <div className="application-object application-div">

@@ -21,11 +21,14 @@ const Login = () => {
         return (
             <div>
                 <div className="container">
-                    <form className="login__inner" onSubmit={handleLogin}>
-                        <DefaultInput name="username" type="text" placeholder="Введите логин"/>
-                        <DefaultInput name="password" type="password" placeholder="Введите пароль"/>
-                        <DefaultButton type="submit">Войти</DefaultButton>
-                    </form>
+                    <div className="login__inner">
+                        <h3>Вбей данные, чтобы понять кто ты по масти</h3>
+                        <form onSubmit={handleLogin}>
+                            <DefaultInput name="username" type="text" placeholder="Введите логин"/>
+                            <DefaultInput name="password" type="password" placeholder="Введите пароль"/>
+                            <DefaultButton type="submit">Войти</DefaultButton>
+                        </form>
+                    </div>
                 </div>
             </div>
         );

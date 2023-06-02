@@ -1,0 +1,42 @@
+.user-info__contacts-dropdown-btn {
+    background-color: salmon;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    display: flex;
+    min-width: 220px;
+    border: none;
+    font-size: 20px;
+    align-items: center;
+}
+
+.user-info__contacts-dropdown-btn:hover {
+    cursor: pointer;
+}
+
+.user-info__contacts-dropdown-btn img {
+    margin-right: 10px;
+}
+
+.myDropdown-link {
+    border: none;
+    font-weight: bold;
+}
+
+.ant-dropdown-menu {
+    background-color: salmon !important;
+    padding: 10px;
+}
+
+.ant-dropdown-menu-item:not(:last-child) {
+    margin-bottom: 5px !important;
+}
+
+.ant-dropdown-menu-item {
+    font-weight: bold;
+    background-color: white;
+}
+
+.ant-dropdown-menu-item:hover {
+
+}

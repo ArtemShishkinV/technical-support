@@ -3,12 +3,25 @@
 .login__inner {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
-    margin: 80px auto;
+    margin: 40px auto;
     align-items: center;
 }
 
 .login__inner .myBtn {
-    margin-top: 20px;
+    margin-top: 30px;
+    padding: 10px 10px;
+    min-width: 100px;
 }
+
+.login__inner form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    align-items: center;
+}
+
+.login__inner form .myInput {
+    width: 100%;
+}
+
 

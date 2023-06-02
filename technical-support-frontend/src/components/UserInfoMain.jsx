@@ -24,9 +24,12 @@ const UserInfoMain = ({user}) => {
                     value={user.email}
                     img={"email"}
                 />
-                <UserPhoneMenu
-                    user={user}
-                />
+                <div className="user-info__contact-item">
+                    <div className="user-info__contacts-title">Телефон:</div>
+                    <UserPhoneMenu
+                        user={user}
+                    />
+                </div>
             </div>
             <div className="user-info__address">
                 <div>

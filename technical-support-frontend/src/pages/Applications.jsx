@@ -7,8 +7,10 @@ import {ApplicationList} from "../components/ApplicationList";
 import {sortApplications} from "../services/ApplicationSort";
 import ApplicationService from "../API/ApplicationService";
 import {DefaultLoader} from "../components/UI/DefaultLoader";
+import {AuthService} from "../API/AuthService";
 
 const Applications = () => {
+    const user = AuthService.isAuthenticated().user;
     const filterOptions = [
         {id: "", title: "Тип сортировки"},
         {id: 'default', title: 'По умолчанию'},
@@ -61,9 +63,12 @@ const Applications = () => {
         <div className="applications-main">
             <div className="container">
                 <div className="applications__inner">
-                    <a href="/create-application">
-                        <DefaultButton>Создать заявку</DefaultButton>
-                    </a>
+                    {user.role === "Работник"
+                        ? <a href="/create-application">
+                            <DefaultButton>Создать заявку</DefaultButton>
+                        </a> : <div></div>
+                    }
+
                     <hr/>
                     <DefaultCategories
                         categories={[

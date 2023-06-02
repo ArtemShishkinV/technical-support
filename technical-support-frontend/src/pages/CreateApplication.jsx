@@ -90,15 +90,15 @@ export const CreateApplication = () => {
 
         function createApplication() {
             console.log(application)
-            // const response = CreateApplicationService.create({
-            //     initiator: context.user,
-            //     category: application.category,
-            //     applicationObjectId: application.applicationObjectId,
-            //     type: application.type,
-            //     description: application.description,
-            //     priority: application.priority,
-            //     isOffline: false
-            // })
+            const response = CreateApplicationService.create({
+                initiator: context.user,
+                category: application.category,
+                applicationObjectId: application.applicationObjectId,
+                type: application.type,
+                description: application.description,
+                priority: application.priority,
+                isOffline: false
+            })
             alert("Заявка успешно создана!")
             navigate.push("/applications")
         }

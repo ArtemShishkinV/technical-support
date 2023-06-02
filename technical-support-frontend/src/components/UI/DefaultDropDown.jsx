@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dropdown} from "antd";
+import "../../css/Dropdown.css";
 
 export const DefaultDropDown = ({items, children}) => {
     return (
@@ -7,6 +8,7 @@ export const DefaultDropDown = ({items, children}) => {
             menu={{items}}
             trigger={['click']}
             placement={"bottomRight"}
+            className="myDropdown"
         >
             {children}
         </Dropdown>

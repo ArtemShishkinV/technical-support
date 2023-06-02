@@ -19,37 +19,38 @@ export const DefaultNavbar = () => {
 
     const auth = AuthService.isAuthenticated()
 
-    const getEmployeesLink = () => {
+    const getNavbarByRole = () => {
         if (auth.user.role === "Специалист технической поддержки")
-            return <li><a href="/employees">Пользователи</a></li>
+            return (
+                <ul className="navbar__list">
+                    <li><a href="/profile">Профиль</a></li>
+                    <li><a href="/applications">Заявки</a></li>
+                    <li><a href="/employees">Пользователи</a></li>
+                </ul>
+            )
+        return (
+            <ul className="navbar__list">
+                <li><a href="/profile">Профиль</a></li>
+                <li><a href="/applications">Мои заявки</a></li>
+                <li><a href="/devices">Мои устройства</a></li>
+                {getEmployeesLink()}
+            </ul>
+        )
+
     }
 
     console.log(auth)
 
     return (
-        auth ?
-            <div className="navbar__wrapper">
-                <div className="container">
-                    <div className="navbar">
-                        <ul className="navbar__list">
-                            <li><a href="/profile">Профиль</a></li>
-                            <li><a href="/applications">Заявки</a></li>
-                            <li><a href="/devices">Устройства</a></li>
-                            {getEmployeesLink()}
-                        </ul>
-                        <div className="logout__wrapper">
-                            <DefaultButton children="Выйти" onClick={logout}/>
-                        </div>
+        <div className="navbar__wrapper">
+            <div className="container">
+                <div className="navbar">
+                    {getNavbarByRole()}
+                    <div className="logout__wrapper">
+                        <DefaultButton children="Выйти" onClick={logout}/>
                     </div>
                 </div>
             </div>
-            :
-            <div className="navbar__wrapper">
-                <div className="container">
-                    <div className="navbar__title">
-                        {/*Добро пожаловать!*/}
-                    </div>
-                </div>
-            </div>
+        </div>
     );
 };

@@ -31,17 +31,20 @@
     flex-direction: column;
 }
 
-.user-info__contacts div {
-    margin-bottom: 20px;
+.user-info__contacts {
+    margin-bottom: 40px;
 }
 
 .user-info__contact-item {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .user-info__contacts-title {
-    min-width: 220px;
+    width: 220px;
+    text-align: right;
+    padding-right: 50px;
 }
 
 .user-info__contacts-value {
