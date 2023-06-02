@@ -27,8 +27,13 @@ public class DeviceController {
         return deviceService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/owner/{id}")
     public List<DeviceDto> getById(@PathVariable Long id) {
-        return deviceService.getById(id);
+        return deviceService.getByOwnerId(id);
+    }
+
+    @GetMapping("/{serialNumber}")
+    public DeviceDto getBySerialNumber(@PathVariable Long serialNumber) {
+        return deviceService.getBySerialNumber(serialNumber);
     }
 }

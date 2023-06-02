@@ -2,7 +2,7 @@
     display: flex;
     margin: 100px auto;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
     align-items: center;
 }
@@ -17,7 +17,15 @@ textarea {
 
 .application__info {
     width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
+.application__info div {
+    width: 100%;
+    text-align: center;
+}
+
 
 .application__buttons {
     margin-top: 20px;
@@ -29,8 +37,22 @@ textarea {
     justify-content: center;
 }
 
+.application__buttons-solo .myBtn {
+    width: 100%;
+}
+
 
 .application__inner h2 {
     margin-top: 0;
     margin-bottom: 50px;
+}
+
+.application__description {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.application__description h4 {
+    margin-bottom: 5px;
 }

@@ -35,11 +35,16 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public List<DeviceDto> getById(Long id) {
+    public List<DeviceDto> getByOwnerId(Long id) {
         Employee employee = employeeRepository.getById(id);
         return deviceRepository.findAllByOwner(employee)
                 .stream()
                 .map(deviceMapper::valueOf)
                 .toList();
+    }
+
+    @Override
+    public DeviceDto getBySerialNumber(Long serialNumber) {
+        return deviceMapper.valueOf(deviceRepository.getById(serialNumber));
     }
 }

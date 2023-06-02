@@ -18,6 +18,7 @@ const Applications = () => {
     ]
 
     const [applications, updateApplications] = useState([])
+
     const [filter, setFilter] = useState({sort: '', query: ''})
     const [isLoading, setLoading] = useState(false)
 

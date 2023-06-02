@@ -14,7 +14,7 @@ export const Application = () => {
 
     const [fetchApplication, isLoading, error] = useFetching(async () => {
         const resp = await ApplicationService.getApplication(`/${params.category}/${params.id}`)
-        setApplication(resp.data)
+        setApplication(resp)
     })
 
     useEffect(() => {

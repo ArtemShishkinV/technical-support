@@ -9,5 +9,7 @@ public interface DeviceService {
     List<DeviceType> getTypes();
     List<DeviceDto> getAll();
 
-    List<DeviceDto> getById(Long id);
+    List<DeviceDto> getByOwnerId(Long id);
+
+    DeviceDto getBySerialNumber(Long serialNumber);
 }

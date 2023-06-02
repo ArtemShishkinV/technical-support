@@ -33,3 +33,26 @@ export const getApplicationCategoryTitle = (url) => {
 export const getObjectsByCategory = (objects, category) => {
     return objects.filter(item => item.category === category);
 }
+
+export const getPropsByUserRole = ({user, application}) => {
+    if (application.basedApplicationDto.initiator.staffNumber === user.staffNumber) {
+        return {
+            application,
+            userTitle: "Исполнитель",
+            collapseTitle: "Об исполнителе",
+            applicationUser: application.basedApplicationDto.executor
+        }
+    }
+    return {
+        application,
+        userTitle: "Клиент",
+        collapseTitle: "О клиенте",
+        applicationUser: application.basedApplicationDto.initiator
+    }
+}
+
+// export async function getApplicationObject(application) {
+//     if (application.category === "Заявка на технику") {
+//         return await
+//     }
+// }

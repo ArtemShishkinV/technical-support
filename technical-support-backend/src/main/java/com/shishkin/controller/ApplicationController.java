@@ -19,17 +19,17 @@ public class ApplicationController {
     private final ApplicationService applicationService;
 
     @GetMapping("/active")
-    public List<ApplicationDto> findActive() {
+    public List<ApplicationDto> findActiveByInitiator() {
         return applicationService.findAllActive();
     }
 
     @GetMapping("/new")
-    public List<ApplicationDto> findNew() {
+    public List<ApplicationDto> findNewByInitiator() {
         return applicationService.findAllNew();
     }
 
     @GetMapping("/archive")
-    public List<ApplicationDto> findArchive() {
+    public List<ApplicationDto> findArchiveByInitiator() {
         return applicationService.findAllArchive();
     }
 
