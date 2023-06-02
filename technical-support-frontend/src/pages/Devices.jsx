@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {AppContext} from "../AppContext";
 import {useFetching} from "../hooks/UseFetching";
 import DeviceService from "../API/DeviceService";
 import {DefaultLoader} from "../components/UI/DefaultLoader";
 import {DeviceList} from "../components/DeviceList";
 import "../css/Devices.css";
+import {AuthService} from "../API/AuthService";
 
 const Devices = () => {
-    const context = useContext(AppContext)
+    const context = AuthService.isAuthenticated()
 
     const [devices, setDevices] = useState([])
 

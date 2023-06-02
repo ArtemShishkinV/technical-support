@@ -40,7 +40,7 @@ public class JwtTokenProvider implements Serializable {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("auth", role);
         Date now = new Date();
-        long validityInMilliseconds = 50 * 60 * 60;
+        long validityInMilliseconds = 1000 * 60 * 60;
         return Jwts.builder().setClaims(claims).setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + validityInMilliseconds))
                 .signWith(SignatureAlgorithm.HS256, secretKey).compact();

@@ -1,16 +1,16 @@
-import React, {useContext, useMemo, useState} from 'react';
-import {AppContext} from "../AppContext";
+import React from 'react';
 import {DefaultButton} from "./UI/DefaultButton";
 import "../css/Application.css";
 import {getButtonByApplicationStatus} from "../utils/ApplicationUtils";
 import {ApplicationPriorityIcon} from "./UI/ApplicationPriorityIcon";
+import {AuthService} from "../API/AuthService";
 
 const ApplicationIdPage = ({application}) => {
-    const user = useContext(AppContext);
+    const context = AuthService.isAuthenticated();
     console.log(application)
 
     const getButtonByRole = () => {
-        if (user.role === "Работник") {
+        if (context.user.role === "Работник") {
             return (
                 <DefaultButton>Отозвать заявку</DefaultButton>
             )

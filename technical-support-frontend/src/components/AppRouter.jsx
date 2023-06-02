@@ -1,6 +1,4 @@
-import React, {useContext} from 'react';
-import {AppContext} from "../AppContext";
-import {DefaultLoader} from "./UI/DefaultLoader";
+import React from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import Home from "../pages/Home";
 import Employees from "../pages/Employees";
@@ -12,32 +10,32 @@ import {CreateApplication} from "../pages/CreateApplication";
 import Login from "../pages/Login";
 
 export const AppRouter = () => {
-    const isAuth = localStorage.getItem("auth");
-    console.log(isAuth)
+        const isAuth = localStorage.getItem("auth");
+        console.log(isAuth)
 
 
-    return (
-        isAuth
-            ?
-            <Router>
-                <Switch>
-                    <Route path="/" exact={true} component={Home}/>
-                    <Route path="/employees" exact={true} component={Employees}/>
-                    <Route path="/profile" exact={true} component={Profile}></Route>
-                    <Route path="/devices" exact={true} component={Devices}></Route>
-                    <Route path="/applications" exact={true} component={Applications}/>
-                    <Route path="/applications/:category/:id" exact={true} component={Application}/>
-                    <Route path="/create-application" exact={true} component={CreateApplication}/>
-                    <Redirect to="/"/>
-                </Switch>
-            </Router>
-            :
-            <Router>
-                <Switch>
-                    <Route path="/login" exact={true} component={Login}/>
-                    <Redirect to="/login"/>
-                </Switch>
-            </Router>
-    )
-}
+        return (
+            isAuth
+                ?
+                <Router>
+                    <Switch>
+                        <Route path="/" exact={true} component={Home}/>
+                        <Route path="/employees" exact={true} component={Employees}/>
+                        <Route path="/profile" exact={true} component={Profile}></Route>
+                        <Route path="/devices" exact={true} component={Devices}></Route>
+                        <Route path="/applications" exact={true} component={Applications}/>
+                        <Route path="/applications/:category/:id" exact={true} component={Application}/>
+                        <Route path="/create-application" exact={true} component={CreateApplication}/>
+                        <Redirect to="/"/>
+                    </Switch>
+                </Router>
+                :
+                <Router>
+                    <Switch>
+                        <Route path="/login" exact={true} component={Login}/>
+                        <Redirect to="/login"/>
+                    </Switch>
+                </Router>
+        )
+    }
 ;

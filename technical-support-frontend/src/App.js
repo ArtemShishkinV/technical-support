@@ -1,10 +1,7 @@
 import {BrowserRouter} from 'react-router-dom';
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import {DefaultNavbar} from "./components/DefaultNavbar";
-import {AppContext} from "./AppContext";
 import {AppRouter} from "./components/AppRouter";
-import EmployeeService from "./API/EmployeeService";
-import {useFetching} from "./hooks/UseFetching";
 import {UserProvider} from "./hooks/UserProvider";
 
 function App() {

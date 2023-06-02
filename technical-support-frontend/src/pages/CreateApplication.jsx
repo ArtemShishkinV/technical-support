@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import "../css/CreateApplication.css";
 import {DefaultSelect} from "../components/UI/DefaultSelect";
-import {AppContext} from "../AppContext";
 import CreateApplicationService from "../API/CreateApplicationService";
 import {useFetching} from "../hooks/UseFetching";
 import {LimitedTextarea} from "../components/UI/LimitedTextArea";
@@ -11,9 +10,10 @@ import {applicationCategories, getObjectsByCategory} from "../utils/ApplicationU
 import {useHistory} from "react-router-dom";
 import {DefaultInput} from "../components/UI/DefaultInput";
 import {DefaultLoader} from "../components/UI/DefaultLoader";
+import {AuthService} from "../API/AuthService";
 
 export const CreateApplication = () => {
-        const context = useContext(AppContext);
+        const context = AuthService.isAuthenticated()
         const navigate = useHistory();
 
         const [application, updateApplication] = useState([
@@ -161,13 +161,11 @@ export const CreateApplication = () => {
             <div className="create-application">
                 <div className="container">
                     <div className="create-application__inner">
-                        <div>
-                            <h1>Создание заявки</h1>
-                            {isModelsLoading
-                                ? <DefaultLoader/>
-                                : mainPage()
-                            }
-                        </div>
+                        <h1>Создание заявки</h1>
+                        {isModelsLoading
+                            ? <DefaultLoader/>
+                            : mainPage()
+                        }
                     </div>
                 </div>
             </div>

@@ -1,5 +1,4 @@
-import React, {useContext} from 'react';
-import {AppContext} from "../AppContext";
+import React from 'react';
 import {UserInfo} from "../components/UserInfo";
 import {AuthService} from "../API/AuthService";
 
