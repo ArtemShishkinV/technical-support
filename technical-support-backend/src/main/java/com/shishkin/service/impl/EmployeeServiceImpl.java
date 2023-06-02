@@ -5,7 +5,7 @@ import com.shishkin.exception.EmployeeNotFoundException;
 import com.shishkin.repository.EmployeeRepository;
 import com.shishkin.service.EmployeeService;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@Log4j2
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<EmployeeDto> findAll() {
@@ -26,6 +25,15 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .stream()
                 .map(EmployeeDto::new)
                 .toList();
+    }
+
+    @Override
+    public EmployeeDto findByEmail(String email) throws EmployeeNotFoundException {
+        log.debug("#find employee with email: " + email);
+        return new EmployeeDto(employeeRepository.findByEmail(email)
+                .orElseThrow(() -> new EmployeeNotFoundException(
+                        HttpStatus.NOT_FOUND,
+                        "Employee with email " + email + " not found!")));
     }
 
     @Override

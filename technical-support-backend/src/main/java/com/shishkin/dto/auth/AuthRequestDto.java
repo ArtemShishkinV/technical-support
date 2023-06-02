@@ -1,4 +1,4 @@
-package com.shishkin.dto;
+package com.shishkin.dto.auth;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -7,7 +7,7 @@ import lombok.Value;
 
 @Value
 @AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
-public class AuthDto {
+public class AuthRequestDto {
     String username;
     String password;
 }

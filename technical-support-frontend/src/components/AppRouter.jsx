@@ -12,15 +12,12 @@ import {CreateApplication} from "../pages/CreateApplication";
 import Login from "../pages/Login";
 
 export const AppRouter = () => {
-    const context = useContext(AppContext);
-    console.log(context)
+    const isAuth = localStorage.getItem("auth");
+    console.log(isAuth)
 
-    if (context.isLoading) {
-        return <DefaultLoader/>
-    }
 
     return (
-        context.isAuth
+        isAuth
             ?
             <Router>
                 <Switch>

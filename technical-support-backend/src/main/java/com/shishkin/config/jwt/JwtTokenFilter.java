@@ -1,4 +1,4 @@
-package com.shishkin.config;
+package com.shishkin.config.jwt;
 
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;

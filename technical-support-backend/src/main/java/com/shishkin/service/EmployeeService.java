@@ -9,4 +9,6 @@ public interface EmployeeService {
     List<EmployeeDto> findAll();
 
     EmployeeDto findById(long id) throws EmployeeNotFoundException;
+
+    EmployeeDto findByEmail(String email) throws EmployeeNotFoundException;
 }

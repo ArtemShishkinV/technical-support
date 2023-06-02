@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
-
     @GetMapping
     public List<EmployeeDto> getAll() {
         return employeeService.findAll();

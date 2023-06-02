@@ -1,4 +1,4 @@
-package com.shishkin.config;
+package com.shishkin.config.jwt;
 
 import com.shishkin.domain.employee.Role;
 import com.shishkin.security.EmployeeDetailsService;
@@ -36,7 +36,7 @@ public class JwtTokenProvider implements Serializable {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String username, Role role) {
+    public String createToken(String username, String role) {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("auth", role);
         Date now = new Date();

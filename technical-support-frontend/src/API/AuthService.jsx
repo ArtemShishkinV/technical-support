@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const API_URL = "/api/auth/";
+const API_URL = "/auth";
 
 export class AuthService {
-    static (email, password) {
+    static login(username, password) {
         return axios
-            .post(API_URL + "login", {
-                username: email,
+            .post(API_URL, {
+                username,
                 password
             })
             .then(response => {
-                if (response.data.accessToken) {
+                if (response.data.token) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
 
@@ -18,11 +18,15 @@ export class AuthService {
             });
     }
 
-    logout() {
+    static logout() {
         localStorage.removeItem("user");
     }
 
-    getCurrentUser() {
-        return JSON.parse(localStorage.getItem('user'));
-    }
+    static isAuthenticated = () => {
+        const user = localStorage.getItem('user');
+        if (!user) {
+            return {}
+        }
+        return JSON.parse(user);
+    };
 }

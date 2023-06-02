@@ -1,28 +1,33 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import "../css/Navbar.css";
 import {DefaultButton} from "./UI/DefaultButton";
-import {AppContext} from "../AppContext";
+import {AuthService} from "../API/AuthService";
+import {useHistory} from "react-router-dom";
 
 
 export const DefaultNavbar = () => {
+    const history = useHistory();
+
     const logout = () => {
-        context.setIsAuth(false);
-        localStorage.removeItem('auth')
+        localStorage.removeItem('user')
+        localStorage.removeItem("auth")
         console.log("Выход...")
+        history.push('/login');
+        window.location.reload();
     }
 
-    const context = useContext(AppContext)
+
+    const auth = AuthService.isAuthenticated()
 
     const getEmployeesLink = () => {
-        if (context.user.role === "Специалист технической поддержки")
+        if (auth.user.role === "Специалист технической поддержки")
             return <li><a href="/employees">Пользователи</a></li>
     }
 
-    console.log(context)
+    console.log(auth)
 
     return (
-        context.isAuth
-            ?
+        auth ?
             <div className="navbar__wrapper">
                 <div className="container">
                     <div className="navbar">
