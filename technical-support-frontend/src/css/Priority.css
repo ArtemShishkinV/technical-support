@@ -1,0 +1,16 @@
+:where(.css-dev-only-do-not-override-k7429z).ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled),
+:where(.css-dev-only-do-not-override-k7429z).ant-switch.ant-switch-checked{
+    background-color: salmon;
+}
+
+
+
+.priority-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.priority-list-item:not(:last-child) {
+    margin-bottom: 10px;
+}

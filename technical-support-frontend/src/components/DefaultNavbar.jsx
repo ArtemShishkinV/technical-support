@@ -33,7 +33,6 @@ export const DefaultNavbar = () => {
                 <li><a href="/profile">Профиль</a></li>
                 <li><a href="/applications">Мои заявки</a></li>
                 <li><a href="/devices">Мои устройства</a></li>
-                {getEmployeesLink()}
             </ul>
         )
 
