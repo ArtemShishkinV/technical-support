@@ -28,6 +28,7 @@ public class EmployeeDto {
     JobPostDto post;
     WorkplaceDto workplace;
     OfficeDto officeDto;
+    boolean isActiveBot;
 
     public EmployeeDto(Employee employee) {
         this.staffNumber = employee.getStaffNumber();
@@ -44,5 +45,6 @@ public class EmployeeDto {
         this.workplace = new WorkplaceDto(employee.getWorkplace());
         this.officeDto = new OfficeDto(employee.getWorkplace().getOffice());
         this.tgChatId = employee.getTgChatId();
+        this.isActiveBot = tgChatId != null;
     }
 }

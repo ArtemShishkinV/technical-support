@@ -122,14 +122,14 @@ public class ApplicationCreateServiceImpl implements ApplicationCreateService {
         Employee employee = employeeRepository.getById(initiatorId);
         List<ApplicationObjectDto> availableDevices = getDevicesAsApplicationObjectDtoByOwner(null);
         List<ApplicationObjectDto> myDevices = getDevicesAsApplicationObjectDtoByOwner(employee);
-        List<ApplicationObjectDto> softwares = softwareRepository.findAll().stream().map(ApplicationObjectDto::new).toList();
+        List<ApplicationObjectDto> software = softwareRepository.findAll().stream().map(ApplicationObjectDto::new).toList();
         return ApplicationCreateModelsDto.builder()
                 .priorities(priorityRepository.findAll())
                 .availableDevices(availableDevices)
                 .myDevices(myDevices)
                 .deviceTypes(deviceTypeRepository.findAll())
                 .softwareTypes(softwareTypeRepository.findAll())
-                .softwares(softwares)
+                .softwares(software)
                 .applicationDeviceTypes(applicationDeviceTypeRepository.findAll())
                 .applicationSoftwareTypes(applicationSoftwareTypeRepository.findAll())
                 .build();

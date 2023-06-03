@@ -24,6 +24,17 @@ services:
       - '8081:8081'
     depends_on:
       - postgres
+  bot:
+    build: technical-support-notification-bot/./
+    container_name: technical-support-notification-bot
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/technicalSupportDb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=qwe
+    ports:
+      - '8082:8082'
+    depends_on:
+      - postgres
   frontend:
     build: technical-support-frontend/./
     container_name: technical-support-frontend

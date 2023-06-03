@@ -9,6 +9,7 @@ import UserInfoMain from "./UserInfoMain";
 import {DefaultCollapse} from "./UI/DefaultCollapse";
 import PriorityService from "../API/PriorityService";
 import {PriorityList} from "./PriorityList";
+import {DefaultButton} from "./UI/DefaultButton";
 
 export const UserInfo = ({user}) => {
     const {Panel} = Collapse;
@@ -28,7 +29,6 @@ export const UserInfo = ({user}) => {
     })
 
     const getCollapse = () => {
-        // if (isProfile) {
             if (user.role === "Работник")
                 return (
                     <DefaultCollapse title="Закрепленные устройства">
@@ -39,14 +39,23 @@ export const UserInfo = ({user}) => {
                     </DefaultCollapse>
                 )
             else
-                return (
-                    <DefaultCollapse title="Мои уведомления">
-                        {isLoading
-                            ? <DefaultLoader/>
-                            : <PriorityList priorities={priorities}/>
-                        }
-                    </DefaultCollapse>
-                )
+                if (user.activeBot) {
+                    return (
+                        <DefaultCollapse title="Мои уведомления">
+                            {isLoading
+                                ? <DefaultLoader/>
+                                : <PriorityList priorities={priorities}/>
+                            }
+                        </DefaultCollapse>
+                    )
+                }
+                else {
+                    return (
+                        <a className="user-info__bot-link" href="https://t.me/TechnicalSupportGraduateBot">
+                            Кликни и пройди регистрацию в боте, чтобы получать уведомления!
+                        </a>
+                    )
+                }
     }
 
     useEffect(() => {
@@ -59,10 +68,7 @@ export const UserInfo = ({user}) => {
             <div className="container">
                 <div className="user-info__inner">
                     <UserInfoMain user={user}/>
-                    {/*{isProfile*/}
                     {getCollapse()}
-                    {/*//     : <div></div>*/}
-                    {/*// }*/}
                 </div>
             </div>
         </div>
