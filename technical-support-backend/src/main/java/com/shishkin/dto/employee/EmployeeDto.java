@@ -1,6 +1,7 @@
 package com.shishkin.dto.employee;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shishkin.domain.employee.Department;
 import com.shishkin.domain.employee.Employee;
 import com.shishkin.domain.employee.JobPost;
@@ -19,6 +20,8 @@ public class EmployeeDto {
     String email;
     LocalDate birthDay;
     String phoneNumber;
+    @JsonIgnore
+    String tgChatId;
     boolean isOnline;
     String role;
     DepartmentDto department;
@@ -40,5 +43,6 @@ public class EmployeeDto {
         this.post = new JobPostDto(employee.getJobPost());
         this.workplace = new WorkplaceDto(employee.getWorkplace());
         this.officeDto = new OfficeDto(employee.getWorkplace().getOffice());
+        this.tgChatId = employee.getTgChatId();
     }
 }

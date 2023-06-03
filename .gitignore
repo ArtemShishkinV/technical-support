@@ -20,3 +20,11 @@ target/
 /technical-support-backend/mvnw.cmd
 /technical-support-backend/src/main/resources/application.properties
 
+
+### backend ###
+/technical-support-notification-bot/.mvn/
+/technical-support-notification-bot/target/
+/technical-support-notification-bot/mvnw
+/technical-support-notification-bot/mvnw.cmd
+/technical-support-notification-bot/src/main/resources/application.properties
+

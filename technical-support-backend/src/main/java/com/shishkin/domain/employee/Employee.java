@@ -38,15 +38,20 @@ public class Employee {
     private Long staffNumber;
     @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
-
     private String middleName;
 
     @Column(unique = true, nullable = false)
     private String email;
     private String password;
     private LocalDate birthDay;
+
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
+    @Column(unique = true)
+    private String tgChatId;
+    @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isOnline;
 
     @Enumerated(EnumType.STRING)

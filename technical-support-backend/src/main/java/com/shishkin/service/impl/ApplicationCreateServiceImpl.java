@@ -7,6 +7,7 @@ import com.shishkin.domain.application.Status;
 import com.shishkin.domain.application.device.ApplicationDevice;
 import com.shishkin.domain.application.software.ApplicationSoftware;
 import com.shishkin.domain.employee.Employee;
+import com.shishkin.dto.NotificationDto;
 import com.shishkin.dto.application.ApplicationCreateModelsDto;
 import com.shishkin.dto.application.ApplicationCreatedDto;
 import com.shishkin.dto.application.ApplicationDto;
@@ -25,9 +26,15 @@ import com.shishkin.repository.StatusRepository;
 import com.shishkin.service.ApplicationAssigneeService;
 import com.shishkin.service.ApplicationCreateService;
 import com.shishkin.service.ApplicationTypeService;
+import com.shishkin.service.NotificationService;
 import com.shishkin.service.utils.AppointmentDatetimeUtils;
+import com.sun.jersey.json.impl.provider.entity.JSONArrayProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.AsyncRestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,24 +42,31 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ApplicationCreateServiceImpl implements ApplicationCreateService {
+    private final NotificationService notificationService;
     private final PriorityRepository priorityRepository;
     private final StatusRepository statusRepository;
     private final EmployeeRepository employeeRepository;
-    private ApplicationAssigneeService applicationAssigneeService;
-    private ApplicationDeviceMapper applicationDeviceMapper;
-    private ApplicationTypeService applicationTypeService;
-    private ApplicationSoftwareMapper applicationSoftwareMapper;
-    private SoftwareRepository softwareRepository;
-    private ApplicationSoftwareTypeRepository applicationSoftwareTypeRepository;
-    private ApplicationDeviceTypeRepository applicationDeviceTypeRepository;
-    private DeviceRepository deviceRepository;
-    private DeviceTypeRepository deviceTypeRepository;
-    private SoftwareTypeRepository softwareTypeRepository;
+    private final ApplicationAssigneeService applicationAssigneeService;
+    private final ApplicationDeviceMapper applicationDeviceMapper;
+    private final ApplicationTypeService applicationTypeService;
+    private final ApplicationSoftwareMapper applicationSoftwareMapper;
+    private final SoftwareRepository softwareRepository;
+    private final ApplicationSoftwareTypeRepository applicationSoftwareTypeRepository;
+    private final ApplicationDeviceTypeRepository applicationDeviceTypeRepository;
+    private final DeviceRepository deviceRepository;
+    private final DeviceTypeRepository deviceTypeRepository;
+    private final SoftwareTypeRepository softwareTypeRepository;
 
     @Override
     public ApplicationDto create(ApplicationCreatedDto applicationCreatedDto) {
         Application application = createBaseApplication(applicationCreatedDto);
-        return createApplicationByType(application, applicationCreatedDto);
+        ApplicationDto applicationDto = createApplicationByType(application, applicationCreatedDto);
+        sendNotification(applicationDto);
+        return applicationDto;
+    }
+
+    private void sendNotification(ApplicationDto application) {
+        notificationService.sendNotification(application);
     }
 
     private Application createBaseApplication(ApplicationCreatedDto applicationCreatedDto) {
