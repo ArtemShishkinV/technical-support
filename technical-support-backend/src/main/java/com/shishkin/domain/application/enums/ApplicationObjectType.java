@@ -1,4 +1,4 @@
-package com.shishkin.domain.application;
+package com.shishkin.domain.application.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,13 +1,11 @@
 package com.shishkin.service.impl;
 
-import com.shishkin.controller.EmployeeController;
 import com.shishkin.domain.application.Application;
-import com.shishkin.domain.application.ApplicationObjectType;
+import com.shishkin.domain.application.enums.ApplicationObjectType;
 import com.shishkin.domain.application.Priority;
 import com.shishkin.domain.application.Status;
 import com.shishkin.domain.application.device.ApplicationDevice;
 import com.shishkin.domain.application.software.ApplicationSoftware;
-import com.shishkin.domain.device.DeviceType;
 import com.shishkin.domain.employee.Employee;
 import com.shishkin.dto.application.ApplicationCreateModelsDto;
 import com.shishkin.dto.application.ApplicationCreatedDto;

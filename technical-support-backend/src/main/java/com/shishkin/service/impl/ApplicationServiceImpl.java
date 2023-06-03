@@ -1,26 +1,20 @@
 package com.shishkin.service.impl;
 
 import com.shishkin.domain.application.Application;
-import com.shishkin.domain.application.ApplicationObjectType;
+import com.shishkin.domain.application.enums.ApplicationObjectType;
 import com.shishkin.domain.application.device.ApplicationDevice;
+import com.shishkin.domain.application.enums.ApplicationStatus;
 import com.shishkin.domain.application.software.ApplicationSoftware;
 import com.shishkin.dto.application.ApplicationDto;
 import com.shishkin.mapper.ApplicationDeviceMapper;
 import com.shishkin.mapper.ApplicationSoftwareMapper;
 import com.shishkin.repository.ApplicationDeviceRepository;
-import com.shishkin.repository.ApplicationDeviceTypeRepository;
 import com.shishkin.repository.ApplicationRepository;
 import com.shishkin.repository.ApplicationSoftwareRepository;
-import com.shishkin.repository.ApplicationSoftwareTypeRepository;
-import com.shishkin.repository.DeviceRepository;
-import com.shishkin.repository.EmployeeRepository;
-import com.shishkin.repository.PriorityRepository;
-import com.shishkin.repository.SoftwareRepository;
 import com.shishkin.repository.StatusRepository;
-import com.shishkin.service.ApplicationAssigneeService;
 import com.shishkin.service.ApplicationService;
-import com.shishkin.service.ApplicationTypeService;
 import lombok.AllArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,32 +34,28 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public List<ApplicationDto> findAllNew() {
-        var allNewDevice = applicationDeviceRepository.findAllNew();
-        var allNewSoftware = applicationSoftwareRepository.findAllNew();
-        return combineApplications(allNewDevice, allNewSoftware);
+        return getApplicationsDtoByStatusTitles(ApplicationStatus.NEW.getTitle());
     }
 
     @Override
     public List<ApplicationDto> findAllActive() {
-        var allActiveDevice = applicationDeviceRepository.findAllActive();
-        var allActiveSoftware = applicationSoftwareRepository.findAllActive();
-        return combineApplications(allActiveDevice, allActiveSoftware);
+        return getApplicationsDtoByStatusTitles(ApplicationStatus.ACTIVE.getTitle());
     }
 
     @Override
     public List<ApplicationDto> findAllArchive() {
-        var allArchiveDevice = applicationDeviceRepository.findAllArchive();
-        var allArchiveSoftware = applicationSoftwareRepository.findAllArchive();
-        return combineApplications(allArchiveDevice, allArchiveSoftware);
+        return getApplicationsDtoByStatusTitles(
+                ApplicationStatus.SOLVED.getTitle(),
+                ApplicationStatus.CANCELLED.getTitle());
     }
 
     @Override
-    public ApplicationDto findByCategoryAndId(String category, Long id) {
+    public ApplicationDto findByCategoryAndApplicationId(String category, Long applicationId) {
         ApplicationObjectType applicationObjectType = ApplicationObjectType.valueOf(category.toUpperCase());
         if (ApplicationObjectType.SOFTWARE.equals(applicationObjectType)) {
-            return applicationSoftwareMapper.valueOf(applicationSoftwareRepository.findByApplicationId(id));
+            return applicationSoftwareMapper.valueOf(applicationSoftwareRepository.findByApplicationId(applicationId));
         }
-        return applicationDeviceMapper.valueOf(applicationDeviceRepository.findByApplicationId(id));
+        return applicationDeviceMapper.valueOf(applicationDeviceRepository.findByApplicationId(applicationId));
     }
 
     @Override
@@ -76,6 +66,12 @@ public class ApplicationServiceImpl implements ApplicationService {
         application.setStatus(status);
         applicationRepository.save(application);
         return applicationDto;
+    }
+
+    private List<ApplicationDto> getApplicationsDtoByStatusTitles(String... statusTitles) {
+        val applicationDeviceList = applicationDeviceRepository.findAllByStatusTitles(statusTitles);
+        val applicationSoftwareList = applicationSoftwareRepository.findAllByStatusTitles(statusTitles);
+        return combineApplications(applicationDeviceList, applicationSoftwareList);
     }
 
     private List<ApplicationDto> combineApplications(List<ApplicationDevice> applicationsDevices,

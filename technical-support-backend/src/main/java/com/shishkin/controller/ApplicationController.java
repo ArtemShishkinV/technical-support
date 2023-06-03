@@ -35,7 +35,7 @@ public class ApplicationController {
 
     @GetMapping("/{category}/{id}")
     public ApplicationDto findByCategoryAndId(@PathVariable String category, @PathVariable Long id) {
-        return applicationService.findByCategoryAndId(category, id);
+        return applicationService.findByCategoryAndApplicationId(category, id);
     }
 
     @PostMapping("/change-status")

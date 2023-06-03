@@ -1,9 +1,6 @@
 package com.shishkin.dto.application;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.shishkin.domain.application.ApplicationObjectType;
-import com.shishkin.domain.application.device.ApplicationDevice;
-import com.shishkin.domain.application.software.ApplicationSoftware;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;

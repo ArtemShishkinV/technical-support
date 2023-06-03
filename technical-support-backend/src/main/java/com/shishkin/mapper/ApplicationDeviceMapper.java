@@ -1,8 +1,7 @@
 package com.shishkin.mapper;
 
-import com.shishkin.domain.application.ApplicationObjectType;
+import com.shishkin.domain.application.enums.ApplicationObjectType;
 import com.shishkin.domain.application.device.ApplicationDevice;
-import com.shishkin.domain.application.device.ApplicationDeviceType;
 import com.shishkin.dto.application.ApplicationDto;
 import com.shishkin.dto.application.ApplicationObjectDto;
 import com.shishkin.dto.application.BasedApplicationDto;
