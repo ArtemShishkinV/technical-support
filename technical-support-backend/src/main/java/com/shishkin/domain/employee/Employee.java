@@ -1,7 +1,7 @@
 package com.shishkin.domain.employee;
 
-import com.shishkin.domain.application.Application;
-import com.shishkin.domain.application.Comment;
+import com.shishkin.domain.application.base.Application;
+import com.shishkin.domain.application.base.Comment;
 import com.shishkin.domain.device.Device;
 import lombok.Data;
 
@@ -18,10 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
@@ -73,6 +71,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "sender")
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "subscriber")
+    private List<Notification> notifications;
 
     @OneToMany(mappedBy = "initiator")
     private List<Application> applicationsInitiator;

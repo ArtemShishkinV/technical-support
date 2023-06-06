@@ -1,7 +1,7 @@
 package com.shishkin.controller;
 
 import com.shishkin.dto.application.ApplicationCreateModelsDto;
-import com.shishkin.dto.application.ApplicationCreatedDto;
+import com.shishkin.dto.application.ApplicationCreateRequestDto;
 import com.shishkin.dto.application.ApplicationDto;
 import com.shishkin.service.ApplicationCreateService;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ public class ApplicationCreateController {
     private final ApplicationCreateService applicationCreateService;
 
     @PostMapping
-    public ApplicationDto create(@RequestBody ApplicationCreatedDto applicationCreatedDto) {
-        return applicationCreateService.create(applicationCreatedDto);
+    public ApplicationDto create(@RequestBody ApplicationCreateRequestDto applicationCreateRequestDto) {
+        return applicationCreateService.create(applicationCreateRequestDto);
     }
 
     @GetMapping("/models/{initiatorId}")

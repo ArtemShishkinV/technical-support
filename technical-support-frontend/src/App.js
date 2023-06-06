@@ -13,7 +13,6 @@ function App() {
                 <AppRouter/>
             </UserProvider>
         </BrowserRouter>
-        // </AppContext.Provider>
     )
 }
 

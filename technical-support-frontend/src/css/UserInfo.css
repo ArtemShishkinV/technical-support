@@ -14,8 +14,8 @@
 }
 
 .user-info__avatar {
-    width: 128px;
-    height: 128px;
+    width: 30%;
+    height: 30%;
     margin: 0 46px;
 }
 
@@ -78,7 +78,6 @@
 .user-info__bot-link {
     margin-top: 40px;
     color: black;
-    font-size: 18px;
     text-align: center;
     border: 2px solid black;
     background-color: salmon;
@@ -86,4 +85,47 @@
 
 .user-info__bot-link:hover {
     color: white;
+}
+
+.user-info__main-wrapper {
+    width: 100%;
+}
+
+@media(max-width: 900px) {
+    .user-info__inner {
+        width: 100%;
+        margin: 30px auto;
+        font-size: 14px;
+    }
+
+    .user-info__avatar {
+        margin-bottom: 30px;
+    }
+
+    .user-info__main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-info__contact-item {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .user-info__contacts-title {
+        width: 220px;
+        text-align: center;
+        padding-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .user-info__contacts-dropdown-btn, .user-info__contacts-value {
+        width: 70% !important;
+        min-width: 0 !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px !important;
+        padding: 5px !important;
+    }
 }

@@ -8,19 +8,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .navbar__list {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     list-style: none;
     padding-left: 0;
 }
 
 .navbar__list li {
     margin-right: 20px;
+    text-align: center;
 }
 
 .navbar__title {
     margin: 62px;
 }
+

@@ -1,11 +1,9 @@
 package com.shishkin.domain.application.device;
 
 import com.shishkin.domain.BaseEntity;
-import com.shishkin.domain.application.Application;
+import com.shishkin.domain.application.base.Application;
 import com.shishkin.domain.device.Device;
-import com.shishkin.dto.application.ApplicationDto;
 import lombok.*;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.*;
 

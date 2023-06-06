@@ -7,7 +7,7 @@ import lombok.Value;
 
 @Value
 @AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
-public class ApplicationCreatedDto {
+public class ApplicationCreateRequestDto {
       EmployeeDto initiator;
       String description;
       String category;

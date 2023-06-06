@@ -25,7 +25,8 @@ export const DefaultNavbar = () => {
                 <ul className="navbar__list">
                     <li><a href="/profile">Профиль</a></li>
                     <li><a href="/applications">Заявки</a></li>
-                    <li><a href="/employees">Пользователи</a></li>
+                    <li><a href="/devices">Устройства</a></li>
+                    <li><a href="/">Программное обеспечение</a></li>
                 </ul>
             )
         return (

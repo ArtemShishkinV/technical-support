@@ -1,7 +1,7 @@
 package com.shishkin.dto.application;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.shishkin.domain.application.Priority;
+import com.shishkin.domain.application.base.Priority;
 import com.shishkin.domain.application.device.ApplicationDeviceType;
 import com.shishkin.domain.application.software.ApplicationSoftwareType;
 import com.shishkin.domain.device.DeviceType;

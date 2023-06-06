@@ -1,11 +1,10 @@
 package com.shishkin.repository;
 
-import com.shishkin.domain.application.Application;
+import com.shishkin.domain.application.base.Application;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Set;
 
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {

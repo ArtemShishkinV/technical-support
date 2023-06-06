@@ -1,10 +1,9 @@
-package com.shishkin.domain.application;
+package com.shishkin.domain.application.base;
 
 import com.shishkin.domain.BaseEntity;
 import com.shishkin.domain.employee.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;

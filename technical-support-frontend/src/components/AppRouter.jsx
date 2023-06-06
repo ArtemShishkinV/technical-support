@@ -8,6 +8,7 @@ import Applications from "../pages/Applications";
 import {Application} from "../pages/Application";
 import {CreateApplication} from "../pages/CreateApplication";
 import Login from "../pages/Login";
+import {CreateApplicationSuccess} from "../pages/CreateApplicationSuccess";
 
 export const AppRouter = () => {
         const isAuth = localStorage.getItem("auth");
@@ -26,6 +27,7 @@ export const AppRouter = () => {
                         <Route path="/applications" exact={true} component={Applications}/>
                         <Route path="/applications/:category/:id" exact={true} component={Application}/>
                         <Route path="/create-application" exact={true} component={CreateApplication}/>
+                        <Route path="/create-application/success/:category/:id" exact={true} component={CreateApplicationSuccess}/>
                         <Redirect to="/"/>
                     </Switch>
                 </Router>

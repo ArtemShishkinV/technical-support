@@ -1,4 +1,4 @@
-package com.shishkin.domain.application;
+package com.shishkin.domain.application.base;
 
 import com.shishkin.domain.NamedBasedEntity;
 import lombok.AllArgsConstructor;

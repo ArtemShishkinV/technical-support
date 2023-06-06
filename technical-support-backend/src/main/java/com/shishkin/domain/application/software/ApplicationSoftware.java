@@ -1,7 +1,7 @@
 package com.shishkin.domain.application.software;
 
 import com.shishkin.domain.BaseEntity;
-import com.shishkin.domain.application.Application;
+import com.shishkin.domain.application.base.Application;
 import com.shishkin.domain.software.Software;
 import lombok.*;
 

@@ -7,7 +7,7 @@ import UserPhoneMenu from "./UserPhoneMenu";
 const UserInfoMain = ({user}) => {
 
     return (
-        <div>
+        <div className="user-info__main-wrapper">
             <div className="user-info__main">
                 <AvatarImage/>
                 <div>

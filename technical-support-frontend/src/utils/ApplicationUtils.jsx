@@ -1,4 +1,6 @@
 import {DefaultButton} from "../components/UI/DefaultButton";
+import {ApplicationPriorityIcon} from "../components/UI/ApplicationPriorityIcon";
+import React from "react";
 
 export const applicationCategories = [
     {id: 0, title: "Выберите категорию", url: ""},
@@ -30,6 +32,12 @@ export const getApplicationCategoryTitle = (url) => {
     return applicationCategories.filter(item => item.url === url).pop()
 }
 
+export const getApplicationCategoryImage = (application) => {
+    if (application.category === applicationCategories[1].title)
+        return <ApplicationPriorityIcon color={getApplicationColorByPriority(application.basedApplicationDto.priority)}/>
+    return <img src={process.env.PUBLIC_URL + `/img/software.png`}/>
+}
+
 export const getObjectsByCategory = (objects, category) => {
     return objects.filter(item => item.category === category);
 }
@@ -56,9 +64,3 @@ export const getApplicationColorByPriority = (application) => {
     if (application.basedApplicationDto.priority === "Высокий") return "#FF8000";
     if (application.basedApplicationDto.priority === "Низкий") return "#009900";
 }
-
-// export async function getApplicationObject(application) {
-//     if (application.category === "Заявка на технику") {
-//         return await
-//     }
-// }

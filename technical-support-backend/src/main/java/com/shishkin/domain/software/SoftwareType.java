@@ -17,6 +17,7 @@ import java.util.Set;
 @Builder
 @Getter
 public class SoftwareType extends NamedBasedEntity {
+    private String icon;
     @JsonIgnore
     @OneToMany(mappedBy = "softwareType")
     private Set<Software> software;

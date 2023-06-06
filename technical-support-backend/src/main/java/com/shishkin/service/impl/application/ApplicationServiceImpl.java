@@ -1,6 +1,6 @@
-package com.shishkin.service.impl;
+package com.shishkin.service.impl.application;
 
-import com.shishkin.domain.application.Application;
+import com.shishkin.domain.application.base.Application;
 import com.shishkin.domain.application.enums.ApplicationObjectType;
 import com.shishkin.domain.application.device.ApplicationDevice;
 import com.shishkin.domain.application.enums.ApplicationStatus;

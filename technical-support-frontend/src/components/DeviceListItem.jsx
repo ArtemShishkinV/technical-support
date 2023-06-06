@@ -1,5 +1,6 @@
 import React from 'react';
 import {DefaultButton} from "./UI/DefaultButton";
+import {getApplicationCategoryImage} from "../utils/ApplicationUtils";
 
 const DeviceListItem = ({device, children}) => {
     console.log(device)

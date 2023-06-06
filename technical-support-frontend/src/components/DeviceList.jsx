@@ -10,7 +10,7 @@ export const DeviceList = ({devices}) => {
                     device={device}
                     children={
                         <DefaultButton className="device-list__item-button">
-                            Отвязать
+                            Создать заявку
                         </DefaultButton>
                     }/>
             )}

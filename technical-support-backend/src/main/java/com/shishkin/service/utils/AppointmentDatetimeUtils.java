@@ -1,6 +1,6 @@
 package com.shishkin.service.utils;
 
-import com.shishkin.domain.application.Priority;
+import com.shishkin.domain.application.base.Priority;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

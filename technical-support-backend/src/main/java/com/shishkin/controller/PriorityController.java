@@ -1,6 +1,6 @@
 package com.shishkin.controller;
 
-import com.shishkin.domain.application.Priority;
+import com.shishkin.domain.application.base.Priority;
 import com.shishkin.repository.PriorityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

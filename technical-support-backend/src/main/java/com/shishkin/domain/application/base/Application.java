@@ -1,4 +1,4 @@
-package com.shishkin.domain.application;
+package com.shishkin.domain.application.base;
 
 
 import com.shishkin.domain.BaseEntity;
@@ -26,6 +26,7 @@ public class Application extends BaseEntity {
     private LocalDateTime createdAt;
     private LocalDateTime solvedAt;
     private LocalDateTime appointmentAt;
+    private String solution;
 
     @OneToOne(mappedBy = "application")
     private ApplicationDevice applicationDevice;
