@@ -6,7 +6,7 @@ import {useFetching} from "../hooks/UseFetching";
 import {LimitedTextarea} from "../components/UI/LimitedTextArea";
 import {DefaultButton} from "../components/UI/DefaultButton";
 import {IdSelect} from "../components/UI/IdSelect";
-import {applicationCategories, getObjectsByCategory} from "../utils/ApplicationUtils";
+import {applicationCategories, getApplicationCategoryUrl, getObjectsByCategory} from "../utils/ApplicationUtils";
 import {useHistory} from "react-router-dom";
 import {DefaultInput} from "../components/UI/DefaultInput";
 import {DefaultLoader} from "../components/UI/DefaultLoader";
@@ -89,20 +89,19 @@ export const CreateApplication = () => {
 
 
         function createApplication() {
-            console.log(application)
-            // const response = CreateApplicationService.create({
-            //     initiator: context.user,
-            //     category: application.category,
-            //     applicationObjectId: application.applicationObjectId,
-            //     type: application.type,
-            //     description: application.description,
-            //     priority: application.priority,
-            //     isOffline: false
-            // }).then((resp) => {
-            //
-            // })
-            alert("Заявка успешно создана!")
-            navigate.push("/create-application/success/device/1")
+            const response = CreateApplicationService.create({
+                initiator: context.user,
+                category: application.category,
+                applicationObjectId: application.applicationObjectId,
+                type: application.type,
+                description: application.description,
+                priority: application.priority,
+                isOffline: false
+            }).then((resp) => {
+                navigate.push(`/create-application/success/${getApplicationCategoryUrl(resp.data.category).url}/${resp.data.basedApplicationDto.id}`)
+            }).catch(() =>
+                navigate.push("/create-application/failed")
+            )
         }
 
         const mainPage = () => {

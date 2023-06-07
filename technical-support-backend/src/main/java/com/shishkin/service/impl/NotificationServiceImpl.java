@@ -22,7 +22,6 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void sendNotification(ApplicationDto application) {
-        log.info(application.toString());
         if (application.getBasedApplicationDto().getExecutor().getTgChatId() != null) {
             String res = WebClient.builder()
                     .build()

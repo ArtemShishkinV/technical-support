@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotificationMapper {
     public NotificationDto valueOf(ApplicationDto application) {
+        System.out.println(123);
         ApplicationObjectType objectType = ApplicationObjectType.findByTitle(application.getCategory());
         return new NotificationDto(
                 application.getBasedApplicationDto().getExecutor().getTgChatId(),

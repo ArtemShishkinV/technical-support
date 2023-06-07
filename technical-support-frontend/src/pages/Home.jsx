@@ -4,7 +4,6 @@ import {AuthService} from "../API/AuthService";
 
 const Home = () => {
     const context = AuthService.isAuthenticated();
-    console.log(context.user)
     return (
         <div>
             <div className="container">

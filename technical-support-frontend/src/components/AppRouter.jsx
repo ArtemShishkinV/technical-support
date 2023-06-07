@@ -9,11 +9,10 @@ import {Application} from "../pages/Application";
 import {CreateApplication} from "../pages/CreateApplication";
 import Login from "../pages/Login";
 import {CreateApplicationSuccess} from "../pages/CreateApplicationSuccess";
+import {CreateApplicationFailed} from "../pages/CreateApplicationFailed";
 
 export const AppRouter = () => {
         const isAuth = localStorage.getItem("auth");
-        console.log(isAuth)
-
 
         return (
             isAuth
@@ -27,6 +26,7 @@ export const AppRouter = () => {
                         <Route path="/applications" exact={true} component={Applications}/>
                         <Route path="/applications/:category/:id" exact={true} component={Application}/>
                         <Route path="/create-application" exact={true} component={CreateApplication}/>
+                        <Route path="/create-application/failed" exact={true} component={CreateApplicationFailed}/>
                         <Route path="/create-application/success/:category/:id" exact={true} component={CreateApplicationSuccess}/>
                         <Redirect to="/"/>
                     </Switch>
