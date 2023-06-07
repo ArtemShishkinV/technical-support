@@ -1,4 +1,4 @@
-package com.shishkin.dto;
+package com.shishkin.dto.models;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;

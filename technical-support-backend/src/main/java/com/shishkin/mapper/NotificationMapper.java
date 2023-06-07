@@ -1,7 +1,7 @@
 package com.shishkin.mapper;
 
 import com.shishkin.domain.application.enums.ApplicationObjectType;
-import com.shishkin.dto.NotificationDto;
+import com.shishkin.dto.models.NotificationDto;
 import com.shishkin.dto.application.ApplicationDto;
 import org.springframework.stereotype.Component;
 

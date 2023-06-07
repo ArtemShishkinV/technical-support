@@ -1,10 +1,9 @@
 package com.shishkin.mapper;
 
 import com.shishkin.domain.device.Device;
-import com.shishkin.dto.DeviceDto;
+import com.shishkin.dto.models.DeviceDto;
 import com.shishkin.dto.employee.EmployeeDto;
 import com.shishkin.repository.DeviceRepository;
-import com.shishkin.repository.DeviceTypeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -27,6 +28,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Device {
     @Id

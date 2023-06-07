@@ -1,4 +1,4 @@
-package com.shishkin.dto;
+package com.shishkin.dto.models;
 
 public record NotificationDto(String chatId,
                                      Long applicationId,
