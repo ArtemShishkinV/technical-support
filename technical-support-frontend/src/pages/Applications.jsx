@@ -4,7 +4,7 @@ import {DefaultButton} from "../components/UI/DefaultButton";
 import {DefaultFilter} from "../components/DefaultFilter";
 import {DefaultCategories} from "../components/DefaultCategories";
 import {ApplicationList} from "../components/ApplicationList";
-import {sortApplications} from "../services/ApplicationSort";
+import {searchApplications, sortApplications} from "../services/ApplicationSort";
 import ApplicationService from "../API/ApplicationService";
 import {DefaultLoader} from "../components/UI/DefaultLoader";
 import {AuthService} from "../API/AuthService";
@@ -27,7 +27,9 @@ const Applications = () => {
     const filteredApplications = useMemo(() => {
         if (applications.length !== 0) {
             console.log(filter.sort)
-            return sortApplications(applications, filter.sort);
+            let newApplications = sortApplications(applications, filter.sort);
+            newApplications = searchApplications(applications, filter.query);
+            return newApplications;
         }
         return applications
     }, [filter, applications])

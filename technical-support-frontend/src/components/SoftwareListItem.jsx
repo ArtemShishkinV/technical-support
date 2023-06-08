@@ -10,8 +10,7 @@ export const SoftwareListItem = ({software, children}) => {
                     <div className="device-list__item-title">
                         <b>{software.title}</b>
                     </div>
-                    <div className="opacity-text">{software.id}</div>
-                    <div>{software.type}</div>
+                    <div className="opacity-text">{software.category}</div>
                     {children}
                 </div>
             </div>

@@ -1,0 +1,31 @@
+@import "style.css";
+
+.myModal button {
+    background-color: var(--dark-blue);
+    border: 3px solid var(--dark-blue);
+    padding: 0 20px;
+}
+
+.myModal button:hover {
+    background-color: white !important;
+    color: var(--dark-blue) !important;
+}
+
+:where(.css-dev-only-do-not-override-k7429z).ant-modal .ant-modal-footer {
+    text-align: center;
+}
+
+:where(.css-dev-only-do-not-override-k7429z).ant-modal .ant-modal-title {
+    text-align: center;
+}
+
+.ant-modal-body__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h5 {
+    margin: 0;
+    font-size: 18px;
+}

@@ -21,10 +21,18 @@ export default class ApplicationService {
         const response = await axios.get(`${BASE_URL}/archive`, authHeader())
         return getApplicationsByOwner(response.data)
     }
+
     static async getApplication(pathname) {
         const response = await axios.get(`${BASE_URL}/${pathname}`, authHeader())
         return response.data
     }
+
+    static async changeStatus(application, newStatus) {
+        console.log(application)
+        application.basedApplicationDto.status = newStatus
+        return await axios.post(`${BASE_URL}/change-status`, application, authHeader())
+    }
+
 }
 
 function getApplicationsByOwner(applications) {

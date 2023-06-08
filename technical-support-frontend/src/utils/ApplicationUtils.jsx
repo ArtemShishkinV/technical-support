@@ -1,6 +1,49 @@
-import {DefaultButton} from "../components/UI/DefaultButton";
-import {ApplicationPriorityIcon} from "../components/UI/ApplicationPriorityIcon";
 import React from "react";
+import {DefaultModal} from "../components/DefaultModal";
+import ApplicationService from "../API/ApplicationService";
+import {LimitedTextarea} from "../components/UI/LimitedTextArea";
+import {ApplicationPriorityIcon} from "../components/UI/ApplicationPriorityIcon";
+
+// const getCallbackByApplicationType = (application) => {
+//     if (application.category === "Заявка на ПО")
+//         return () => ApplicationService.changeStatus(application, "Решена")
+//             .then((resp) => {
+//                     window.location.reload(false)
+//                 }
+//             )
+//
+//     const device = {
+//         id: application.applicationObjectDto.id,
+//         title: "",
+//         description: "",
+//         type: "",
+//         icon: "",
+//         issuedAt: ""
+//     }
+//
+//     if (application.type === "Ремонт") {
+//         return () => {
+//             DeviceService.updateCondition()
+//             ApplicationService.changeStatus(application, "Решена")
+//                 .then((resp) => {
+//                         window.location.reload(false)
+//                     }
+//                 )
+//         }
+//     }
+// }
+
+const solutionModalText = (application) => {
+    console.log(application)
+    return <div className="ant-modal-body__inner">
+        <h4>Кратко опишите решение проблемы</h4>
+        <LimitedTextarea
+            value={application.basedApplicationDto.solution}
+            limit={600}
+            setValue={(value) => application.basedApplicationDto.solution = value}
+        />
+    </div>
+}
 
 export const applicationCategories = [
     {id: 0, title: "Выберите категорию", url: ""},
@@ -8,18 +51,49 @@ export const applicationCategories = [
     {id: 2, title: "Заявка на ПО", url: "software"}
 ]
 
-export const getButtonByApplicationStatus = (status) => {
-    if (status === "Создана")
+export const getButtonByApplicationStatus = (application) => {
+    if (application.basedApplicationDto.status === "Создана")
         return (
             <div className="application__buttons application__buttons-solo">
-                <DefaultButton>Взять в работу</DefaultButton>
+                <DefaultModal
+                    title="Вы подтверждаете, что берете заявку в работу?"
+                    buttonText="Взять в работу"
+                    callback={() => ApplicationService.changeStatus(application, "В работе")
+                        .then((resp) => {
+                                window.location.reload(false)
+                            }
+                        )}
+                    application={application}
+                    newStatus="Отменена"
+                />
             </div>
         )
-    if (status === "В работе")
+    if (application.basedApplicationDto.status === "В работе")
         return (
             <div className="application__buttons">
-                <DefaultButton>Решить</DefaultButton>
-                <DefaultButton>Отменить</DefaultButton>
+                <DefaultModal
+                    parModalText={solutionModalText(application)}
+                    buttonText="Отправить решение"
+                    title="Закрытие заявки"
+                    callback={() => ApplicationService.changeStatus(application, "Решена")
+                        .then((resp) => {
+                            window.location.reload(false)
+                        })}
+                    application={application}
+                    newStatus="Решена"
+                />
+                <DefaultModal
+                    parModalText={solutionModalText(application)}
+                    buttonText="Отменить заявку"
+                    title="Вы действительно хотите отменить заявку?"
+                    callback={() => ApplicationService.changeStatus(application, "Отменена")
+                        .then((resp) => {
+                                window.location.reload(false)
+                            }
+                        )}
+                    application={application}
+                    newStatus="Отменена"
+                />
             </div>
         )
 }
@@ -34,7 +108,8 @@ export const getApplicationCategoryTitle = (url) => {
 
 export const getApplicationCategoryImage = (application) => {
     if (application.category === applicationCategories[1].title)
-        return <ApplicationPriorityIcon color={getApplicationColorByPriority(application.basedApplicationDto.priority)}/>
+        return <ApplicationPriorityIcon
+            color={getApplicationColorByPriority(application.basedApplicationDto.priority)}/>
     return <img src={process.env.PUBLIC_URL + `/img/software.png`}/>
 }
 

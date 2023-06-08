@@ -1,4 +1,6 @@
 import {sortDate} from "../utils/DatetimeUtils";
+import applications from "../pages/Applications";
+import app from "../App";
 
 const priorities = ["Низкий", "Высокий", "Критический"]
 
@@ -12,6 +14,14 @@ export const sortApplications = (applications, sortType) => {
     if (sortType === "Сначала новые")
         return [...applications].sort((a, b) => sortByNew(a, b))
     return applications
+}
+
+export const searchApplications = (applications, query) => {
+    const lowQuery = query.toLowerCase()
+    return applications.filter(application => application.category.toLowerCase().includes(lowQuery) ||
+        application.applicationObjectDto.title.toLowerCase().includes(lowQuery) ||
+        application.applicationObjectDto.category.toLowerCase().includes(lowQuery)
+    )
 }
 
 const sortByPriorities = (application, anotherApplication) => {

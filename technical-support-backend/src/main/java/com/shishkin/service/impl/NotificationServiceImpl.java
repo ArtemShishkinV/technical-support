@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.net.ConnectException;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -23,14 +25,18 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void sendNotification(ApplicationDto application) {
         if (application.getBasedApplicationDto().getExecutor().getTgChatId() != null) {
-            String res = WebClient.builder()
-                    .build()
-                    .post()
-                    .uri(notificationUrl)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .bodyValue(notificationMapper.valueOf(application))
-                    .retrieve().bodyToMono(String.class).block();
-            log.info(res);
+            try {
+                String res = WebClient.builder()
+                        .build()
+                        .post()
+                        .uri(notificationUrl)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .bodyValue(notificationMapper.valueOf(application))
+                        .retrieve().bodyToMono(String.class).block();
+                log.info(res);
+            } catch (Exception exception) {
+                log.warn("Ошибка при отправке запроса на уведомление " + exception.getMessage());
+            }
         }
     }
 }

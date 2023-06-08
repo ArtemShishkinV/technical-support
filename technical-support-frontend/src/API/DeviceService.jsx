@@ -11,4 +11,12 @@ export default class DeviceService {
     static async getBySerialNumber(id) {
         return axios.get(`${BASE_URL}/${id}`, authHeader())
     }
+
+    static async updateOwner(deviceDto) {
+        return axios.post(`${BASE_URL}/update-owner`, deviceDto, authHeader())
+    }
+
+    static async updateCondition(deviceDto) {
+        return axios.post(`${BASE_URL}/update-condition`, deviceDto, authHeader())
+    }
 }

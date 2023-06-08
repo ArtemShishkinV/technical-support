@@ -96,7 +96,7 @@ export const CreateApplication = () => {
                 type: application.type,
                 description: application.description,
                 priority: application.priority,
-                isOffline: false
+                isOffline: application.isOffline
             }).then((resp) => {
                 navigate.push(`/create-application/success/${getApplicationCategoryUrl(resp.data.category).url}/${resp.data.basedApplicationDto.id}`)
             }).catch(() =>

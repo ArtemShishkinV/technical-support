@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +64,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         var basedDto = applicationDto.getBasedApplicationDto();
         var status = statusRepository.findByTitle(basedDto.getStatus());
         Application application = applicationRepository.getById(basedDto.getId());
+        changeApplicationSolutionIfNeed(application, applicationDto);
         application.setStatus(status);
         applicationRepository.save(application);
         return applicationDto;
@@ -83,5 +85,13 @@ public class ApplicationServiceImpl implements ApplicationService {
         result.addAll(anotherApplicationsDto);
 
         return result;
+    }
+
+    private void changeApplicationSolutionIfNeed( Application application, ApplicationDto applicationDto) {
+        String solution = applicationDto.getBasedApplicationDto().getSolution();
+        if (solution != null && !solution.isBlank()) {
+            application.setSolution(solution);
+            application.setSolvedAt(LocalDateTime.now());
+        }
     }
 }

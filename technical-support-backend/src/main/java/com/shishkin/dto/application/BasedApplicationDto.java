@@ -13,12 +13,14 @@ import java.time.LocalDateTime;
 public class BasedApplicationDto {
     Long id;
     String description;
+    String solution;
     EmployeeDto initiator;
     EmployeeDto executor;
     String status;
     String priority;
     boolean isOffline;
     LocalDateTime createdAt;
+    LocalDateTime solvedAt;
 
     public BasedApplicationDto(Application application) {
         this.id = application.getId();
@@ -29,5 +31,7 @@ public class BasedApplicationDto {
         this.isOffline = application.isOffline();
         this.priority = application.getPriority().getTitle();
         this.createdAt = application.getCreatedAt();
+        this.solvedAt = application.getSolvedAt();
+        this.solution = application.getSolution();
     }
 }

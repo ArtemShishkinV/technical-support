@@ -6,6 +6,7 @@
     border-radius: 50%;
     border: 3px dashed var(--dark-blue);
     animation: rotate 1s infinite linear;
+    margin: 100px auto;
 }
 
 @keyframes rotate {
