@@ -21,6 +21,7 @@ import java.util.Set;
 @Setter
 public class Application extends BaseEntity {
     private String description;
+    @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isOffline;
     @CreationTimestamp
     private LocalDateTime createdAt;

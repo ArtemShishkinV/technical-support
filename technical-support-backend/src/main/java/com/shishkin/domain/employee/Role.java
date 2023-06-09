@@ -2,16 +2,19 @@ package com.shishkin.domain.employee;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Getter
-public enum Role {
+public enum Role  {
     EMPLOYEE("ROLE_EMPLOYEE", "Работник"),
-    SUPPORT("ROLE_SUPPORT", "Специалист технической поддержки"),
-    ADMIN("ROLE_ADMIN", "Администратор");
+    SUPPORT("ROLE_SUPPORT", "Специалист технической поддержки");
+
     private final String title;
     private final String code;
 

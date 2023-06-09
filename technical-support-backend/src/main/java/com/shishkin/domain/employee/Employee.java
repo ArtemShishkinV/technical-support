@@ -62,6 +62,7 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = false)
     private Department department;
+
     @OneToOne
     @JoinColumn(name = "workplace_id", referencedColumnName = "id", unique = true)
     private Workplace workplace;
