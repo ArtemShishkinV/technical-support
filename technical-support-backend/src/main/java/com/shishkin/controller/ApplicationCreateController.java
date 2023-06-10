@@ -14,15 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
+// URL, обрабатываемые контроллером
 @RequestMapping("/api/application/create")
 public class ApplicationCreateController {
     private final ApplicationCreateService applicationCreateService;
 
+    // Обеспечивает создание заявки
     @PostMapping
     public ApplicationDto create(@RequestBody ApplicationCreateRequestDto applicationCreateRequestDto) {
         return applicationCreateService.create(applicationCreateRequestDto);
     }
-
+    // Обеспечивает получение данных
+    // для клиентского приложения,
+    // необходимых для создания заявки
     @GetMapping("/models/{initiatorId}")
     public ApplicationCreateModelsDto getModels(@PathVariable Long initiatorId) {
         return applicationCreateService.getModels(initiatorId);

@@ -1,5 +1,6 @@
 package com.shishkin.service;
 
+import com.shishkin.dto.employee.EmployeeCreateModelsDto;
 import com.shishkin.dto.employee.EmployeeDto;
 import com.shishkin.exception.EmployeeNotFoundException;
 
@@ -11,4 +12,6 @@ public interface EmployeeService {
     EmployeeDto findById(long id) throws EmployeeNotFoundException;
 
     EmployeeDto findByEmail(String email) throws EmployeeNotFoundException;
+
+    EmployeeCreateModelsDto getModels();
 }

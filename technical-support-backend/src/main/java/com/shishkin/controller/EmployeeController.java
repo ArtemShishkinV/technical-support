@@ -1,5 +1,6 @@
 package com.shishkin.controller;
 
+import com.shishkin.dto.employee.EmployeeCreateModelsDto;
 import com.shishkin.dto.employee.EmployeeDto;
 import com.shishkin.service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,8 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findById(id), HttpStatus.OK);
     }
 
-//    @GetMapping("/{phoneNumber}")
-//    public ResponseEntity<S>
+    @GetMapping("/models")
+    public EmployeeCreateModelsDto getModels() {
+        return employeeService.getModels();
+    }
 }

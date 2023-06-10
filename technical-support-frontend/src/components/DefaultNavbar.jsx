@@ -29,6 +29,13 @@ export const DefaultNavbar = () => {
                     <li><a href="/">Программное обеспечение</a></li>
                 </ul>
             )
+        if (auth.user.role === "Администратор")
+            return (
+                <ul className="navbar__list">
+                    <li><a href="/profile">Профиль</a></li>
+                    <li><a href="/employees">Пользователи</a></li>
+                </ul>
+            )
         return (
             <ul className="navbar__list">
                 <li><a href="/profile">Профиль</a></li>

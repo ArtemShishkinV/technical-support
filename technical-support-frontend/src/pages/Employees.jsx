@@ -1,41 +1,48 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import {useFetching} from "../hooks/UseFetching";
+import EmployeeService from "../API/EmployeeService";
+import {DefaultLoader} from "../components/UI/DefaultLoader";
+import {DefaultButton} from "../components/UI/DefaultButton";
+import {useHistory} from "react-router-dom";
+import "../css/Employees.css";
+import {EmployeeListItem} from "../components/EmployeeListItem";
 
 const Employees = () => {
     const [employees, setEmployees] = useState([]);
+    const navigate = useHistory();
+
+    const [fetchEmployees, isLoading, _] = useFetching(async () => {
+        const resp = await EmployeeService.getAll();
+        setEmployees(resp.data)
+    })
+
+    const redirectCreateEmployee = () => {
+        navigate.push("/create-employee")
+    }
 
     useEffect(() => {
-        axios.get("/api/employees").then((data) => {
-            console.log(data.data[0]);
-            setEmployees(data?.data);
-        });
+        fetchEmployees()
     }, []);
 
     return (
         <div>
-            <h1>Список работников</h1>
-            <table>
-                <thead>
-                <tr>
-                    <th>Табельный номер</th>
-                    <th>ФИО</th>
-                    <th>Электронная почта</th>
-                    <th>Номер телефона</th>
-                    <th>Роль</th>
-                </tr>
-                </thead>
-                <tbody>
-                {employees.map(employee => (
-                    <tr>
-                        <td>{employee.staffNumber}</td>
-                        <td>{employee.lastName} {employee.firstName} {employee.middleName}</td>
-                        <td>{employee.email}</td>
-                        <td>{employee.phoneNumber}</td>
-                        <td>{employee.role}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <div className="container">
+                <div className="employees__inner">
+                    <DefaultButton
+                        onClick={redirectCreateEmployee}
+                    >Создать работника</DefaultButton>
+                </div>
+                <h1>Список работников</h1>
+                {isLoading
+                    ? <DefaultLoader/>
+                    :
+                    <div className="employees-list">
+                        {employees.map(employee => <EmployeeListItem employee={employee}/>)}
+                    </div>
+
+                }
+            </div>
+
         </div>
     );
 };

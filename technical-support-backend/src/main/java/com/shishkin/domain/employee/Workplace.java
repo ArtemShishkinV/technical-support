@@ -22,7 +22,7 @@ import javax.persistence.UniqueConstraint;
 // не может быть в одном офисе на одном этаже и одной комнате
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"office_id", "floor", "room_number", "table_number"})
+        @UniqueConstraint(columnNames={"office_id", "floor", "roomNumber", "tableNumber"})
 )
 @NoArgsConstructor
 @AllArgsConstructor

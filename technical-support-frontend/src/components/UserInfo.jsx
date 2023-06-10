@@ -24,6 +24,7 @@ export const UserInfo = ({user}) => {
     })
 
     const getCollapse = () => {
+        if (user.role === "Администратор") return;
         if (user.role === "Работник")
             return (
                 <DefaultCollapse title="Закрепленные устройства">
@@ -33,7 +34,7 @@ export const UserInfo = ({user}) => {
                     }
                 </DefaultCollapse>
             )
-        else if (user.activeBot) {
+        if (user.activeBot) {
             return (
                 <DefaultCollapse title="Мои уведомления">
                     {isLoading

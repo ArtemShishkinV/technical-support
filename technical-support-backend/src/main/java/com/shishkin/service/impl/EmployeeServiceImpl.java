@@ -1,5 +1,6 @@
 package com.shishkin.service.impl;
 
+import com.shishkin.dto.employee.EmployeeCreateModelsDto;
 import com.shishkin.dto.employee.EmployeeDto;
 import com.shishkin.exception.EmployeeNotFoundException;
 import com.shishkin.repository.EmployeeRepository;
@@ -43,5 +44,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFoundException(
                         HttpStatus.NOT_FOUND,
                         "Employee with id " + id + " not found!")));
+    }
+
+    @Override
+    public EmployeeCreateModelsDto getModels() {
+        return null;
     }
 }

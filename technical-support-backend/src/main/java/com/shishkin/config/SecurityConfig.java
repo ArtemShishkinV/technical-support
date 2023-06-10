@@ -20,8 +20,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtTokenProvider tokenProvider;
-//    private EmployeeDetailsService employeeDetailsService;
-
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

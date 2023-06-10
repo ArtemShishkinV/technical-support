@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 @Getter
 public enum Role  {
     EMPLOYEE("ROLE_EMPLOYEE", "Работник"),
-    SUPPORT("ROLE_SUPPORT", "Специалист технической поддержки");
+    SUPPORT("ROLE_SUPPORT", "Специалист технической поддержки"),
+    ADMIN("ROLE_ADMIN", "Администратор");
 
     private final String title;
     private final String code;

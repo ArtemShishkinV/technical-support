@@ -3,9 +3,9 @@ import "../../css/Select.css"
 
 export const DefaultSelect = ({label, options, defaultValue, value, onChange}) => {
     return (
-        <div>
+        <div className="mySelect__wrapper">
             {(typeof options !== "undefined") ?
-                <div>
+                <div className="mySelect__inner">
                     <label htmlFor="select">{label}</label>
                     <select
                         className="mySelect"

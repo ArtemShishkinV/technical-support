@@ -10,6 +10,7 @@ import {CreateApplication} from "../pages/CreateApplication";
 import Login from "../pages/Login";
 import {CreateApplicationSuccess} from "../pages/CreateApplicationSuccess";
 import {CreateApplicationFailed} from "../pages/CreateApplicationFailed";
+import {CreateEmployee} from "../pages/CreateEmployee";
 
 export const AppRouter = () => {
         const isAuth = localStorage.getItem("auth");
@@ -21,6 +22,7 @@ export const AppRouter = () => {
                     <Switch>
                         <Route path="/" exact={true} component={Home}/>
                         <Route path="/employees" exact={true} component={Employees}/>
+                        <Route path="/create-employee" exact={true} component={CreateEmployee}/>
                         <Route path="/profile" exact={true} component={Profile}></Route>
                         <Route path="/devices" exact={true} component={Devices}></Route>
                         <Route path="/applications" exact={true} component={Applications}/>
