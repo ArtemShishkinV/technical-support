@@ -47,9 +47,9 @@ body{
     padding: 0 0 50px;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
+/*::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
 
 .container{
     max-width: 1370px;

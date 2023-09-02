@@ -16,6 +16,10 @@ export const CreateEmployee = () => {
         setModels(resp.data)
     })
 
+    const test = () => {
+
+    }
+
     useEffect(() => {
         fetchModels()
     }, [])
@@ -24,7 +28,7 @@ export const CreateEmployee = () => {
         <div>
             <div className="container">
                 <div className="create-employee__inner">
-                    <h1>Создание работника</h1>
+                    <h1>Создание пользователя</h1>
                     <div className="create-employee__main">
                         <DefaultInput
                             placeholder="Введите имя"
@@ -39,6 +43,10 @@ export const CreateEmployee = () => {
                             type="email"
                             placeholder="Введите электронную почту"
                         />
+                        <DefaultInput
+                            type="password"
+                            placeholder="Введите пароль"
+                        />
                         <PhoneInput
                             className="phoneInput"
                             placeholder="Введите номер телефона"
@@ -48,26 +56,31 @@ export const CreateEmployee = () => {
                             onChange={setPhoneNumber}/>
                         <DefaultSelect
                             defaultValue={{id: 0, title: "Выберите роль"}}
-                            options={[{id: 1, title: "Тест"}]}
+                            options={[{id: 1, title: "Работник"}]}
+                            onChange={test()}
                         />
                         <DefaultSelect
                             defaultValue={{id: 0, title: "Выберите отдел"}}
-                            options={[{id: 1, title: "Тест"}]}
+                            options={[{id: 1, title: "Отдел разработки"}]}
+                            onChange={test()}
                         />
                         <DefaultSelect
                             defaultValue={{id: 0, title: "Выберите должность"}}
-                            options={[{id: 1, title: "Тест"}]}
+                            options={[{id: 1, title: "Инженер"}]}
+                            onChange={test()}
                         />
                         <DefaultSelect
                             defaultValue={{id: 0, title: "Выберите офис"}}
-                            options={[{id: 1, title: "Тест"}]}
+                            options={[{id: 1, title: "Москва, Кутузова, 5"}]}
+                            onChange={test()}
                         />
                         <DefaultSelect
                             defaultValue={{id: 0, title: "Выберите рабочее место"}}
-                            options={[{id: 1, title: "Тест"}]}
+                            options={[{id: 1, title: "4-К6-1"}]}
+                            onChange={test()}
                         />
                         <DefaultButton>
-                            Создать сотрудника
+                            Создать
                         </DefaultButton>
                     </div>
                 </div>

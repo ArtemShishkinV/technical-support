@@ -18,19 +18,30 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 @Slf4j
+// Реализация сервиса авторизации
 public class AuthServiceImpl implements AuthService {
+    // Сервис, реализующий работу с сотрудниками
     private final EmployeeService employeeService;
+    // Объект, отвечающих за генерацию JWT
     private final JwtTokenProvider tokenProvider;
+    // Объект, выполняющий авторизацию
+    // проверку электронной почты и пароля
     private final AuthenticationManager authenticationManager;
 
+    // Метод, реализующий авторизацию
     @Override
     public AuthResponseDto authorize(AuthRequestDto user) {
+        // Получение работника по электронной почте
         EmployeeDto employee = employeeService.findByEmail(user.getUsername());
+        // Проверка правильности электронной почты и пароля
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         if (authentication.isAuthenticated()) {
+            // Генерация успешного токена при успешной авторизации
             String token = tokenProvider.createToken(
                     employee.getEmail(), employee.getRole());
+
+            // Возврат DTO с токеном и информацией о работнике
             return new AuthResponseDto(employee, token);
         }
 

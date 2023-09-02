@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping("/api/profile")
 public class ProfileController {
-    private EmployeeService employeeService;
-
     @GetMapping
     public ResponseEntity<EmployeeDto> getAuthenticationInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

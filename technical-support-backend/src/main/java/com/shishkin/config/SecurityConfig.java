@@ -33,18 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.apply(new JwtTokenConfigurer(tokenProvider));
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        return
-
-//                authorizeRequests()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/","/**").authenticated()
-//                .antMatchers("/*").permitAll()
-//                .and().formLogin()
-//                .and().userDetailsService(employeeDetailsService).build();
-//    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

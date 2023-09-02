@@ -28,3 +28,4 @@ target/
 /technical-support-notification-bot/mvnw.cmd
 /technical-support-notification-bot/src/main/resources/application.properties
 
+/documentation/

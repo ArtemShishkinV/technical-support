@@ -28,7 +28,7 @@ const Applications = () => {
         if (applications.length !== 0) {
             console.log(filter.sort)
             let newApplications = sortApplications(applications, filter.sort);
-            newApplications = searchApplications(applications, filter.query);
+            newApplications = searchApplications(newApplications, filter.query);
             return newApplications;
         }
         return applications

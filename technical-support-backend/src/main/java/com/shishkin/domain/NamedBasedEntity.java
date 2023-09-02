@@ -1,6 +1,7 @@
 package com.shishkin.domain;
 
 import lombok.Getter;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -8,6 +9,6 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Getter
 public abstract class NamedBasedEntity extends BaseEntity {
-    @Column(nullable = false, unique = true)
+    @NaturalId
     private String title;
 }

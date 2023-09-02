@@ -30,9 +30,9 @@ const Employees = () => {
                 <div className="employees__inner">
                     <DefaultButton
                         onClick={redirectCreateEmployee}
-                    >Создать работника</DefaultButton>
+                    >Создать пользователя</DefaultButton>
                 </div>
-                <h1>Список работников</h1>
+                <h1>Список пользователей</h1>
                 {isLoading
                     ? <DefaultLoader/>
                     :

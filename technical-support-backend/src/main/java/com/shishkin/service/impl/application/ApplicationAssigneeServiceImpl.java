@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+// Сервис, реализующий назначение заявки на специалиста ТХП
 public class ApplicationAssigneeServiceImpl implements ApplicationAssigneeService {
     private final EmployeeRepository employeeRepository;
     private final OfficeRepository officeRepository;

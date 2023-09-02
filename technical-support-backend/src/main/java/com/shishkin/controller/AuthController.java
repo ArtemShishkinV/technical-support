@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+// URL, обрабатываемые контроллером
 @RequestMapping("/auth")
 @Slf4j
 @AllArgsConstructor
 public class AuthController {
+    // Сервис для осуществления авторизации
     private final AuthService authService;
 
+    // Реализует авторизацию пользователя
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthResponseDto> authenticate(@RequestBody AuthRequestDto user) {
         log.info("UserResourceImpl : authenticate");
@@ -30,15 +33,4 @@ public class AuthController {
         }
         return ResponseEntity.ok(authResponseDto);
     }
-
-//    public EmployeeDto auth(@RequestBody AuthRequestDto authDto) {
-//        System.out.println(authDto.getUsername() + ":" + authDto.getPassword());
-//        Employee employee = employeeRepository.findByEmail(authDto.getUsername())
-//                .orElseThrow(() -> new EmployeeNotFoundException(HttpStatus.NOT_FOUND,
-//                "Employee with " + authDto.getUsername() + " not found!"));
-//        if (authDto.getPassword().isEmpty() &&
-//                !passwordEncoder.encode(authDto.getPassword()).equals(employee.getPassword()))
-//            throw new AuthorizationServiceException("Invalid password!");
-//        return new EmployeeDto(employee);
-//    }
 }

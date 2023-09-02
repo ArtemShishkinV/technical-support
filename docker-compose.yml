@@ -32,7 +32,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=qwe
       - BOT_TOKEN=${BOT_TOKEN}
-      - BOT_NAME=TechnicalSupportGraduateBot
+      - BOT_NAME=${BOT_NAME}
     ports:
       - '8082:8082'
     depends_on:

@@ -37,6 +37,24 @@ const ApplicationIdPage = ({application}) => {
         fetchApplicationObject()
     }, [application])
 
+    const getApplicationGeneralBlock = () => {
+        return (
+            <div className="application__info-general">
+                <div>
+                    Статус: {application.basedApplicationDto.status}
+                </div>
+                <div>
+                    Дата создания: {getDatetimeToString(application.basedApplicationDto.createdAt)}
+                </div>
+                <div className="application__description">
+                    <h4>Описание проблемы</h4>
+                    <textarea disabled>{application.basedApplicationDto.description}</textarea>
+                </div>
+                {getButtonByRole()}
+            </div>
+        )
+    }
+
     const getButtonByRole = () => {
         if (application.basedApplicationDto.status === "Отменена")
             return (
@@ -71,9 +89,9 @@ const ApplicationIdPage = ({application}) => {
                         buttonText="Отозвать заявку"
                         callback={() => ApplicationService.changeStatus(application, "Отменена")
                             .then((resp) => {
-                                window.location.reload(false)
-                            }
-                        )}
+                                    window.location.reload(false)
+                                }
+                            )}
                         application={application}
                         newStatus="Отменена"
                     />
@@ -98,27 +116,11 @@ const ApplicationIdPage = ({application}) => {
                     {application.category === "Заявка на технику"
                         ? <DeviceListItem
                             device={applicationObject}
-                            children={
-                                <div>
-                                    <div className="application__description">
-                                        <h4>Описание проблемы</h4>
-                                        <textarea disabled>{application.basedApplicationDto.description}</textarea>
-                                    </div>
-                                    {getButtonByRole()}
-                                </div>
-                            }
+                            children={getApplicationGeneralBlock()}
                         />
                         : <SoftwareListItem
                             software={applicationObject}
-                            children={
-                                <div>
-                                    <div className="application__description">
-                                        <h4>Описание проблемы</h4>
-                                        <textarea disabled>{application.basedApplicationDto.description}</textarea>
-                                    </div>
-                                    {getButtonByRole()}
-                                </div>
-                            }
+                            children={getApplicationGeneralBlock()}
                         />
                     }
                 </div>

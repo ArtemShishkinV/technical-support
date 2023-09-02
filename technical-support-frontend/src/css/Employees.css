@@ -53,12 +53,12 @@
     border-radius: 5px;
 }
 
-.mySelect__wrapper {
+.create-employee__main .mySelect__wrapper {
     width: 100%;
     max-width: 60%;
 }
 
-.mySelect__inner,
+.create-employee__main .mySelect__inner,
 .create-employee__main .mySelect {
     width: 100%;
     margin-bottom: 5px;
